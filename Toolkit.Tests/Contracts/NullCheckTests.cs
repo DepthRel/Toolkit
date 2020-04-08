@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Toolkit.Contracts;
 
 namespace Toolkit.Tests.Contracts
@@ -12,19 +11,7 @@ namespace Toolkit.Tests.Contracts
         {
             object obj = new object();
 
-            try
-            {
-                Contract.NotNull<object, ArgumentNullException>(obj);
-                Assert.AreEqual(0, 0);
-            }
-            catch (ArgumentException ex)
-            {
-                Assert.Fail();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
-            }
+            Assert.AreEqual(true, Check.NotNull<object>(obj));
         }
 
         [TestMethod]
@@ -32,19 +19,7 @@ namespace Toolkit.Tests.Contracts
         {
             object obj = null;
 
-            try
-            {
-                Contract.NotNull<object, ArgumentNullException>(obj);
-                Assert.Fail($"{nameof(ArgumentNullException)} expected");
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.AreEqual(0, 0);
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
-            }
+            Assert.AreEqual(false, Check.NotNull<object>(obj));
         }
 
         [TestMethod]
@@ -58,19 +33,7 @@ namespace Toolkit.Tests.Contracts
                 new object()
             };
 
-            try
-            {
-                Contract.NotNull<object, ArgumentNullException>(objs);
-                Assert.AreEqual(0, 0);
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.Fail();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
-            }
+            Assert.AreEqual(true, Check.NotNull<object>(objs));
         }
 
         [TestMethod]
@@ -84,19 +47,7 @@ namespace Toolkit.Tests.Contracts
                 new object()
             };
 
-            try
-            {
-                Contract.NotNull<object, ArgumentNullException>(objs);
-                Assert.Fail($"{nameof(ArgumentNullException)} expected");
-            }
-            catch (ArgumentNullException ex)
-            {
-                Assert.AreEqual(0, 0);
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
-            }
+            Assert.AreEqual(false, Check.NotNull<object>(objs));
         }
 
         [TestMethod]
@@ -104,19 +55,7 @@ namespace Toolkit.Tests.Contracts
         {
             string str = "string";
 
-            try
-            {
-                Contract.StringNotNullOrWhiteSpace<ArgumentException>(str);
-                Assert.AreEqual(0, 0);
-            }
-            catch (ArgumentException ex)
-            {
-                Assert.Fail();
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
-            }
+            Assert.AreEqual(true, Check.StringNotNullOrWhiteSpace(str));
         }
 
         [TestMethod]
@@ -124,19 +63,7 @@ namespace Toolkit.Tests.Contracts
         {
             string str = "";
 
-            try
-            {
-                Contract.StringNotNullOrWhiteSpace<ArgumentException>(str);
-                Assert.Fail($"{nameof(ArgumentException)} expected");
-            }
-            catch (ArgumentException ex)
-            {
-                Assert.AreEqual(0, 0);
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
-            }
+            Assert.AreEqual(false, Check.StringNotNullOrWhiteSpace(str));
         }
     }
 }
