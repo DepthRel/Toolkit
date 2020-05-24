@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toolkit.Contracts;
 
-namespace Toolkit.Tests.Contracts
+namespace Toolkit.Tests.Checks
 {
     [TestClass]
     public class EqualsCheckTests
