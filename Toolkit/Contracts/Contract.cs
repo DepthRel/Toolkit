@@ -30,7 +30,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="arg">Checked object</param>
-        public static void NotNull<T, TEx>(T arg) where TEx : Exception, new()
+        public static void NotNull<T, TEx>(in T arg) where TEx : Exception, new()
         {
             if (arg == null) throw new TEx();
         }
@@ -71,7 +71,7 @@ namespace Toolkit.Contracts
         /// </summary>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="arg">Checked string</param>
-        public static void StringNotNullOrWhiteSpace<TEx>(string arg) where TEx : Exception, new()
+        public static void StringNotNullOrWhiteSpace<TEx>(in string arg) where TEx : Exception, new()
         {
             if (string.IsNullOrWhiteSpace(arg?.Trim())) throw new TEx();
         }
@@ -87,7 +87,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void Equal<T, TEx>(T left, T right)
+        public static void Equal<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -104,7 +104,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void NotEqual<T, TEx>(T left, T right)
+        public static void NotEqual<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -121,7 +121,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void MoreOrEqualThan<T, TEx>(T left, T right)
+        public static void MoreOrEqualThan<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -138,7 +138,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void MoreThan<T, TEx>(T left, T right)
+        public static void MoreThan<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -155,7 +155,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void NotMoreOrEqualThan<T, TEx>(T left, T right)
+        public static void NotMoreOrEqualThan<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -172,7 +172,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void LessOrEqualThan<T, TEx>(T left, T right)
+        public static void LessOrEqualThan<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -189,7 +189,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void LessThan<T, TEx>(T left, T right)
+        public static void LessThan<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -206,7 +206,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static void NotLessOrEqualThan<T, TEx>(T left, T right)
+        public static void NotLessOrEqualThan<T, TEx>(in T left, in T right)
             where T : IComparable, IComparable<T>
             where TEx : Exception, new()
         {
@@ -225,7 +225,7 @@ namespace Toolkit.Contracts
         /// </summary>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="condition">Logical expression</param>
-        public static void Is<TEx>(bool condition) where TEx : Exception, new()
+        public static void Is<TEx>(in bool condition) where TEx : Exception, new()
         {
             if (!condition) throw new TEx();
         }
@@ -235,7 +235,7 @@ namespace Toolkit.Contracts
         /// </summary>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="condition">Logical expression</param>
-        public static void IsNot<TEx>(bool condition) where TEx : Exception, new()
+        public static void IsNot<TEx>(in bool condition) where TEx : Exception, new()
         {
             if (condition) throw new TEx();
         }

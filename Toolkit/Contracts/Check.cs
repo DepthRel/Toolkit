@@ -26,7 +26,7 @@ namespace Toolkit.Contracts
         /// </summary>
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="arg">Checked object</param>
-        public static bool NotNull<T>(T arg)
+        public static bool NotNull<T>(in T arg)
         {
             return !(arg == null);
         }
@@ -54,7 +54,7 @@ namespace Toolkit.Contracts
         /// The statement that the string is not empty and not null
         /// </summary>
         /// <param name="arg">Checked string</param>
-        public static bool StringNotNullOrWhiteSpace(string arg)
+        public static bool StringNotNullOrWhiteSpace(in string arg)
         {
             return !string.IsNullOrWhiteSpace(arg?.Trim());
         }
@@ -69,7 +69,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool Equal<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool Equal<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) != 0);
         }
@@ -80,7 +80,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool NotEqual<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool NotEqual<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) == 0);
         }
@@ -91,7 +91,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool MoreOrEqualThan<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool MoreOrEqualThan<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) < 0);
         }
@@ -102,7 +102,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool MoreThan<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool MoreThan<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) <= 0);
         }
@@ -113,7 +113,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool NotMoreOrEqualThan<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool NotMoreOrEqualThan<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) > 0);
         }
@@ -124,7 +124,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool LessOrEqualThan<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool LessOrEqualThan<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) > 0);
         }
@@ -135,7 +135,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool LessThan<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool LessThan<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) >= 0);
         }
@@ -146,7 +146,7 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <param name="left">Checked Value</param>
         /// <param name="right">Comparison value</param>
-        public static bool NotLessOrEqualThan<T>(T left, T right) where T : IComparable, IComparable<T>
+        public static bool NotLessOrEqualThan<T>(in T left, in T right) where T : IComparable, IComparable<T>
         {
             return !(left.CompareTo(right) < 0);
         }
