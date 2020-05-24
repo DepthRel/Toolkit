@@ -18,7 +18,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.Equal<int, InvalidOperationException>(first, second);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -39,7 +39,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.Equal<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -60,7 +60,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotEqual<int, InvalidOperationException>(first, second);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -81,7 +81,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotEqual<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -104,7 +104,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.MoreOrEqualThan<int, InvalidOperationException>(first, third);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -125,7 +125,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.MoreOrEqualThan<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -146,7 +146,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.MoreThan<int, InvalidOperationException>(first, second);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -167,7 +167,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.MoreThan<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -188,7 +188,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotMoreOrEqualThan<int, InvalidOperationException>(first, second);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -209,7 +209,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotMoreOrEqualThan<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -232,7 +232,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.LessOrEqualThan<int, InvalidOperationException>(first, third);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -253,7 +253,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.LessOrEqualThan<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -274,7 +274,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.LessThan<int, InvalidOperationException>(first, second);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -295,7 +295,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.LessThan<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -316,7 +316,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotLessOrEqualThan<int, InvalidOperationException>(first, second);
                 Assert.AreEqual(0, 0);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.Fail();
             }
@@ -337,9 +337,65 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotLessOrEqualThan<int, InvalidOperationException>(first, second);
                 Assert.Fail($"{nameof(InvalidOperationException)} expected");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 Assert.AreEqual(0, 0);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+            }
+        }
+
+        [TestMethod]
+        public void IsCorrect()
+        {
+            int first = 5;
+            int second = 10;
+            string str = "string";
+
+            try
+            {
+                Contract.Is<InvalidOperationException>(first != second);
+                Contract.Is<InvalidOperationException>(first < second);
+                Contract.Is<InvalidOperationException>(first == 5);
+
+                Contract.Is<InvalidOperationException>(str != null);
+                Contract.Is<InvalidOperationException>(str == "string");
+
+                Assert.AreEqual(0, 0);
+            }
+            catch (InvalidOperationException)
+            {
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+            }
+        }
+
+        [TestMethod]
+        public void IsNotCorrect()
+        {
+            int first = 5;
+            int second = 10;
+            string str = "string";
+
+            try
+            {
+                Contract.IsNot<InvalidOperationException>(first == second);
+                Contract.IsNot<InvalidOperationException>(first > second);
+                Contract.IsNot<InvalidOperationException>(first == 0);
+
+                Contract.IsNot<InvalidOperationException>(str == null);
+                Contract.IsNot<InvalidOperationException>(str != "string");
+
+                Assert.AreEqual(0, 0);
+            }
+            catch (InvalidOperationException)
+            {
+                Assert.Fail();
             }
             catch (Exception ex)
             {

@@ -217,5 +217,29 @@ namespace Toolkit.Contracts
         }
 
         #endregion
+
+        #region Universal Check
+
+        /// <summary>
+        /// Statement that the result of a boolean expression is true
+        /// </summary>
+        /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
+        /// <param name="condition">Logical expression</param>
+        public static void Is<TEx>(bool condition) where TEx : Exception, new()
+        {
+            if (!condition) throw new TEx();
+        }
+
+        /// <summary>
+        /// Statement that the result of a boolean expression is false
+        /// </summary>
+        /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
+        /// <param name="condition">Logical expression</param>
+        public static void IsNot<TEx>(bool condition) where TEx : Exception, new()
+        {
+            if (condition) throw new TEx();
+        }
+
+        #endregion
     }
 }
