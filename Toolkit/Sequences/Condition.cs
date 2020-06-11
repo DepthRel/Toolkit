@@ -5,7 +5,7 @@ namespace Toolkit.Sequences
     /// <summary>
     /// Creating a condition chain to use expressions such as AND and OR
     /// Has overloaded operators "&" and "|" for combine multiple Condition
-    /// Каждый результат цепочки выражения неявно преобразуется в bool
+    /// Each result of an expression chain is implicitly converted to bool
     /// </summary>
     public class Condition
     {
