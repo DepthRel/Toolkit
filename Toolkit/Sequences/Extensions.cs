@@ -30,5 +30,18 @@ namespace Toolkit.Sequences
         {
             return enumerable.OrderBy(x => Guid.NewGuid());
         }
+
+        /// <summary>
+        /// Swap argument values with each other
+        /// </summary>
+        /// <typeparam name="T">Variable's type</typeparam>
+        /// <param name="left">First swapped value</param>
+        /// <param name="right">Second swapped value</param>
+        public static void Swap<T>(ref T left, ref T right)
+        {
+            T temp = left;
+            left = right;
+            right = temp;
+        }
     }
 }

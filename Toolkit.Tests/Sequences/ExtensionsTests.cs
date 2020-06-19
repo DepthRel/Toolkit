@@ -47,5 +47,35 @@ namespace Toolkit.Tests.Sequences
 
             Assert.Fail();
         }
+
+        [TestMethod]
+        public void SwapExtensionWithIntValuesTestCorrect()
+        {
+            int first = 1;
+            int firstOld = first;
+
+            int second = 20;
+            int secondOld = second;
+
+            Extensions.Swap(ref first, ref second);
+
+            Assert.AreEqual(secondOld, first);
+            Assert.AreEqual(firstOld, second);
+        }
+
+        [TestMethod]
+        public void SwapExtensionWithStringValuesTestCorrect()
+        {
+            string first = "1";
+            string firstOld = first;
+
+            string second = "20";
+            string secondOld = second;
+
+            Extensions.Swap(ref first, ref second);
+
+            Assert.AreEqual(secondOld, first);
+            Assert.AreEqual(firstOld, second);
+        }
     }
 }
