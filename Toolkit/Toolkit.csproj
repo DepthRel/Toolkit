@@ -6,11 +6,12 @@
     <Authors>DepthRel</Authors>
     <Product />
     <Company />
-    <Description>.NET Toolkit include tools for ViewModels and contracts for checks logical conditions</Description>
+    <Description>.NET Toolkit include tools for comfortable dev</Description>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/DepthRel/Toolkit</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
 </Project>
