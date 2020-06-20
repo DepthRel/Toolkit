@@ -14,7 +14,7 @@ namespace Toolkit.Sequences
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
-        /// <returns></returns>
+        /// <returns><strong>A new sequence with elements located at random positions.</strong></returns>
         public static IEnumerable<T> Reorder<T>(in IEnumerable<T> enumerable)
         {
             return enumerable.OrderBy(x => Guid.NewGuid());
@@ -25,7 +25,7 @@ namespace Toolkit.Sequences
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
-        /// <returns></returns>
+        /// <returns><strong>A new sequence with elements located at random positions.</strong></returns>
         public static IEnumerable<T> Reorder<T>(this IEnumerable<T> enumerable)
         {
             return enumerable.OrderBy(x => Guid.NewGuid());

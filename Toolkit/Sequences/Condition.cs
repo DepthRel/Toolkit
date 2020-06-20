@@ -27,7 +27,7 @@ namespace Toolkit.Sequences
         /// Entry point to condition's builder
         /// </summary>
         /// <param name="condition">Initial condition</param>
-        /// <returns></returns>
+        /// <returns><strong>Variable <see cref="Condition"/> which can be implicitly cast to bool type.</strong></returns>
         public static Condition Check(in bool condition)
         {
             return new Condition(condition);
@@ -39,7 +39,7 @@ namespace Toolkit.Sequences
         /// Analogue of the expression "&&"
         /// </summary>
         /// <param name="condition">Applicable condition</param>
-        /// <returns>A current object that is ready for implicit conversion to bool</returns>
+        /// <returns><strong>A current object that is ready for implicit conversion to bool</strong></returns>
         public Condition And(in bool condition)
         {
             result = result && condition;
@@ -50,7 +50,7 @@ namespace Toolkit.Sequences
         /// Analogue of the expression "||"
         /// </summary>
         /// <param name="condition">Applicable condition</param>
-        /// <returns>A current object that is ready for implicit conversion to bool</returns>
+        /// <returns><strong>A current object that is ready for implicit conversion to bool</strong></returns>
         public Condition Or(in bool condition)
         {
             result = result || condition;
@@ -61,7 +61,7 @@ namespace Toolkit.Sequences
         /// Condition "&&" for inverted parameter value
         /// </summary>
         /// <param name="condition">Applicable condition</param>
-        /// <returns>A current object that is ready for implicit conversion to bool</returns>
+        /// <returns><strong>A current object that is ready for implicit conversion to bool</strong></returns>
         public Condition AndNot(in bool condition)
         {
             result = result && !condition;
@@ -72,7 +72,7 @@ namespace Toolkit.Sequences
         /// Condition "||" for inverted parameter value
         /// </summary>
         /// <param name="condition">Applicable condition</param>
-        /// <returns>A current object that is ready for implicit conversion to bool</returns>
+        /// <returns><strong>A current object that is ready for implicit conversion to bool</strong></returns>
         public Condition OrNot(in bool condition)
         {
             result = result || !condition;
@@ -82,7 +82,7 @@ namespace Toolkit.Sequences
         /// <summary>
         /// Invert current condition. Analogue of the expression "!"
         /// </summary>
-        /// <returns>A current object that is ready for implicit conversion to bool</returns>
+        /// <returns><strong>A current object that is ready for implicit conversion to bool</strong></returns>
         public Condition Not()
         {
             result = !result;

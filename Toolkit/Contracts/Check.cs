@@ -2,6 +2,9 @@
 
 namespace Toolkit.Contracts
 {
+    /// <summary>
+    /// Verification of conditions. Unlike <see cref="Contract"/>, it does not cause an exception
+    /// </summary>
     public class Check
     {
         #region Nullable Check
@@ -10,7 +13,7 @@ namespace Toolkit.Contracts
         /// The statement that the parameters are not null
         /// </summary>
         /// <param name="args">Array of objects</param>
-        /// <returns>True if all objects not null</returns>
+        /// <returns><strong>True if all objects not null</strong></returns>
         public static bool NotNull(params object[] args)
         {
             for (int i = 0; i < args.Length; i++)

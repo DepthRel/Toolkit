@@ -5,9 +5,9 @@ using System.Runtime.CompilerServices;
 namespace Toolkit.ViewModels
 {
     /// <summary>
-    /// An abstract class that represents some convenience for projects using the ViewModel architecture model
-    /// The class implements the INotifyPropertyChanged interface and implements a method for notifying about a value change using OnPropertyChanged
-    /// The SetProperty method is implemented, which sets a new value to the property and automatically calls OnPropertyChanged
+    /// <para>An abstract class that represents some convenience for projects using the ViewModel architecture model.</para>
+    /// <para>The class implements the INotifyPropertyChanged interface and implements a method for notifying about a value change using OnPropertyChanged.</para>
+    /// <para>The SetProperty method is implemented, which sets a new value to the property and automatically calls OnPropertyChanged.</para>
     /// </summary>
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
@@ -18,7 +18,7 @@ namespace Toolkit.ViewModels
         /// <param name="storage">Reference to variable for setting new value</param>
         /// <param name="value">Value for setting to variable</param>
         /// <param name="propertyName">The property name which call method</param>
-        /// <returns>Is new value set for variable</returns>
+        /// <returns><strong>Is new value set for variable</strong></returns>
         protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(storage, value))
