@@ -4,16 +4,16 @@ using Toolkit.Contracts;
 namespace Toolkit
 {
     /// <summary>
-    /// A generic class for representing an interval of two values. Provides methods for checking a value against a range.
+    /// A generic class for representing an range of two values. Provides methods for checking a value against a range.
     /// </summary>
     /// <typeparam name="T">Type descendant of class Object implementing interface IComparable and IComparable <></typeparam>
-    public class Interval<T> where T : IComparable, IComparable<T>, IEquatable<T>
+    public class Range<T> where T : IComparable, IComparable<T>, IEquatable<T>
     {
         protected readonly T left;
         protected readonly T right;
 
         /// <summary>
-        /// The first value  in the range. Necessarily less than the second value.
+        /// The first value in the range. Necessarily less than the second value.
         /// </summary>
         public T Left => left;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Toolkit
         /// <param name="first">The first value  in the range. Necessarily less than the second value.</param>
         /// <param name="second">The value at the end of the range. Necessarily greater than the first value.</param>
         /// <exception cref="ArgumentNullException">Thrown when one of parameters is null</exception>
-        public Interval(in T first, in T second)
+        public Range(in T first, in T second)
         {
             Contract.NotNull<T, ArgumentNullException>(first);
             Contract.NotNull<T, ArgumentNullException>(second);
@@ -118,11 +118,11 @@ namespace Toolkit
         /// <summary>
         /// Verifies the values of the transmitted interval
         /// </summary>
-        /// <param name="obj">Interval of <see cref="Interval{T}"/> type</param>
+        /// <param name="obj">Interval of <see cref="Range{T}"/> type</param>
         /// <returns><strong>True if each value of the transmitted interval matches the current</strong></returns>
         public override bool Equals(object obj)
         {
-            if (obj is Interval<T> value)
+            if (obj is Range<T> value)
             {
                 if (Left.CompareTo(value.Left) == 0 && Right.CompareTo(value.Right) == 0)
                 {
@@ -167,7 +167,7 @@ namespace Toolkit
         /// <param name="left">First interval</param>
         /// <param name="right">Second interval</param>
         /// <returns><strong>True if each interval value is equal to each other</strong></returns>
-        public static bool operator ==(Interval<T> left, Interval<T> right) => left.Left.CompareTo(right.Left) == 0 && left.Right.CompareTo(right.Right) == 0;
+        public static bool operator ==(Range<T> left, Range<T> right) => left.Left.CompareTo(right.Left) == 0 && left.Right.CompareTo(right.Right) == 0;
 
         /// <summary>
         /// Check for inequality of two intervals
@@ -175,7 +175,7 @@ namespace Toolkit
         /// <param name="left">First interval</param>
         /// <param name="right">Second interval</param>
         /// <returns><strong>True if each interval value is not equal to each other</strong></returns>
-        public static bool operator !=(Interval<T> left, Interval<T> right) => left.Left.CompareTo(right.Left) != 0 || left.Right.CompareTo(right.Right) != 0;
+        public static bool operator !=(Range<T> left, Range<T> right) => left.Left.CompareTo(right.Left) != 0 || left.Right.CompareTo(right.Right) != 0;
 
         #endregion
     }

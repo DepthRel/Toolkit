@@ -8,7 +8,7 @@ namespace Toolkit.Tests
         [TestMethod]
         public void InitializeCorrect()
         {
-            var interval = new Interval<int>(10, 1);
+            var interval = new Range<int>(10, 1);
 
             Assert.AreEqual(1, interval.Left);
             Assert.AreEqual(10, interval.Right);
@@ -17,7 +17,7 @@ namespace Toolkit.Tests
         [TestMethod]
         public void InsideCorrect()
         {
-            var interval = new Interval<int>(1, 10);
+            var interval = new Range<int>(1, 10);
             bool result;
 
             result = interval.Inside(-1);
@@ -39,7 +39,7 @@ namespace Toolkit.Tests
         [TestMethod]
         public void BetweenCorrect()
         {
-            var interval = new Interval<int>(1, 10);
+            var interval = new Range<int>(1, 10);
             bool result;
 
             result = interval.Between(-1);
@@ -61,7 +61,7 @@ namespace Toolkit.Tests
         [TestMethod]
         public void OutsideCorrect()
         {
-            var interval = new Interval<int>(1, 10);
+            var interval = new Range<int>(1, 10);
             bool result;
 
             result = interval.Outside(-1);
@@ -83,7 +83,7 @@ namespace Toolkit.Tests
         [TestMethod]
         public void BeyondCorrect()
         {
-            var interval = new Interval<int>(1, 10);
+            var interval = new Range<int>(1, 10);
             bool result;
 
             result = interval.Beyond(-1);
@@ -105,7 +105,7 @@ namespace Toolkit.Tests
         [TestMethod]
         public void BeforeCorrect()
         {
-            var interval = new Interval<int>(1, 10);
+            var interval = new Range<int>(1, 10);
             bool result;
 
             result = interval.Before(-1);
@@ -127,8 +127,8 @@ namespace Toolkit.Tests
         [TestMethod]
         public void EqualsCorrect()
         {
-            var firstInterval = new Interval<int>(1, 10);
-            var secondInterval = new Interval<int>(1, 10);
+            var firstInterval = new Range<int>(1, 10);
+            var secondInterval = new Range<int>(1, 10);
 
             Assert.AreEqual(true, firstInterval.Equals(secondInterval));
             Assert.AreEqual(true, firstInterval == secondInterval);
@@ -138,8 +138,8 @@ namespace Toolkit.Tests
         [TestMethod]
         public void NotEqualsCorrect()
         {
-            var firstInterval = new Interval<int>(1, 10);
-            var secondInterval = new Interval<int>(-1, 10);
+            var firstInterval = new Range<int>(1, 10);
+            var secondInterval = new Range<int>(-1, 10);
 
             Assert.AreEqual(false, firstInterval.Equals(secondInterval));
             Assert.AreEqual(false, firstInterval == secondInterval);
@@ -149,8 +149,8 @@ namespace Toolkit.Tests
         [TestMethod]
         public void EqualsHashCodeCorrect()
         {
-            var firstInterval = new Interval<int>(1, 10);
-            var secondInterval = new Interval<int>(1, 10);
+            var firstInterval = new Range<int>(1, 10);
+            var secondInterval = new Range<int>(1, 10);
 
             Assert.AreEqual(true, firstInterval.GetHashCode() == secondInterval.GetHashCode());
         }
@@ -158,8 +158,8 @@ namespace Toolkit.Tests
         [TestMethod]
         public void NotEqualsHashCodeCorrect()
         {
-            var firstInterval = new Interval<int>(1, 10);
-            var secondInterval = new Interval<int>(-1, 10);
+            var firstInterval = new Range<int>(1, 10);
+            var secondInterval = new Range<int>(-1, 10);
 
             Assert.AreEqual(false, firstInterval.GetHashCode() == secondInterval.GetHashCode());
         }

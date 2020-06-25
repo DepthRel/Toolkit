@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Toolkit.Sequences;
 
-namespace Toolkit.Tests.Sequences
+namespace Toolkit.Tests
 {
     [TestClass]
     public class ConditionTests

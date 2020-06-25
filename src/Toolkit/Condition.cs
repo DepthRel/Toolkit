@@ -1,18 +1,24 @@
 ﻿using System;
 
-namespace Toolkit.Sequences
+namespace Toolkit
 {
     /// <summary>
-    /// Creating a condition chain to use expressions such as AND and OR
-    /// Has overloaded operators "&" and "|" for combine multiple Condition
-    /// Each result of an expression chain is implicitly converted to bool
+    /// <para>
+    ///     Creating a condition chain to use expressions such as AND and OR.
+    /// </para>
+    /// <para>
+    ///     Has overloaded operators "&" and "|" for combine multiple Condition.
+    /// </para>
+    /// <para>
+    ///     Each result of an expression chain is implicitly converted to bool.
+    /// </para>
     /// </summary>
     public class Condition
     {
         /// <summary>
         /// Mutable condition during the execution of the call chain
         /// </summary>
-        private bool result;
+        protected bool result;
 
         /// <summary>
         /// Closed constructor to initialize the initial condition
@@ -96,17 +102,29 @@ namespace Toolkit.Sequences
         /// <summary>
         /// Implicit conversion operator to bool
         /// </summary>
-        /// <param name="condition"></param>
+        /// <param name="condition"><strong>Current condition</strong></param>
         public static implicit operator bool(in Condition condition)
         {
             return condition.result;
         }
 
+        /// <summary>
+        /// Combining two conditions as AND (&&) 
+        /// </summary>
+        /// <param name="left">First condition</param>
+        /// <param name="right">Second condition</param>
+        /// <returns><strong>A new condition obtained by combining two conditions through AND</strong></returns>
         public static Condition operator &(in Condition left, in Condition right)
         {
             return new Condition(left.result && right.result);
         }
 
+        /// <summary>
+        /// Combining two conditions as OR (||) 
+        /// </summary>
+        /// <param name="left">First condition</param>
+        /// <param name="right">Second condition</param>
+        /// <returns><strong>A new condition obtained by combining two conditions through OR</strong></returns>
         public static Condition operator |(in Condition left, in Condition right)
         {
             return new Condition(left.result || right.result);
