@@ -14,6 +14,48 @@ namespace Toolkit.Tests
             AppSettings.Setting["name"] = name;
 
             Assert.AreEqual(name, AppSettings.Setting["name"]);
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void DoubleWriteSettingCorrect()
+        {
+            string name = "Dev";
+            string temp = "Temp";
+            AppSettings.Setting["name"] = temp;
+            AppSettings.Setting["name"] = name;
+
+            Assert.AreEqual(name, AppSettings.Setting["name"]);
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void RemoveSettingCorrect()
+        {
+            string name = "Dev";
+            AppSettings.Setting["name"] = name;
+
+            AppSettings.Setting.RemoveSetting(name);
+
+            Assert.AreEqual(null, AppSettings.Setting.TryGetSetting(name));
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void TryGetSettingCorrect()
+        {
+            string name = "Dev";
+            AppSettings.Setting["name"] = name;
+
+            Assert.AreEqual(name, AppSettings.Setting.TryGetSetting("name"));
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void TryGetSettingIncorrect()
+        {
+            Assert.AreEqual(null, AppSettings.Setting.TryGetSetting("name"));
+            ClearAllSettings();
         }
 
         [TestMethod]
@@ -45,6 +87,18 @@ namespace Toolkit.Tests
                 {
                     Assert.Fail();
                 }
+            }
+
+            ClearAllSettings();
+        }
+
+        private void ClearAllSettings()
+        {
+            var actualSettings = AppSettings.Setting.AvailableSettings;
+
+            foreach (var key in actualSettings)
+            {
+                AppSettings.Setting.RemoveSetting(key);
             }
         }
     }
