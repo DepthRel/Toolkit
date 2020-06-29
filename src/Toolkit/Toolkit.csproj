@@ -10,7 +10,7 @@
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/DepthRel/Toolkit</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.4.1</Version>
+    <Version>1.5.0</Version>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
