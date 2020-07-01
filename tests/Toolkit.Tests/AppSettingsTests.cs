@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -94,7 +95,7 @@ namespace Toolkit.Tests
         }
 
         [TestMethod]
-        public void SerializeSettingsCorrect()
+        public void SerializeSettingsToJSONCorrect()
         {
             string StringKey = "string";
             int IntKet = 1;
@@ -117,7 +118,7 @@ namespace Toolkit.Tests
         }
 
         [TestMethod]
-        public void SerializeSettingsToStreamCorrect()
+        public void SerializeSettingsToJSONToStreamCorrect()
         {
             string StringKey = "string";
             int IntKet = 1;
@@ -135,6 +136,52 @@ namespace Toolkit.Tests
             Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
             Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
             Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString()));
+
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void SerializeSettingsToXMLCorrect()
+        {
+            string StringKey = "string";
+            int IntKet = 1;
+            double DoubleKey = 3.14;
+
+            AppSettings.Setting[nameof(StringKey)] = StringKey;
+            AppSettings.Setting[nameof(IntKet)] = IntKet;
+            AppSettings.Setting[nameof(DoubleKey)] = DoubleKey;
+
+            string settingsInXML = AppSettings.Setting.SerializeToXML();
+            ClearAllSettings();
+
+            AppSettings.Setting.DeserializeFromXML(settingsInXML, ReplacementStatus.Rewrite);
+
+            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString(), CultureInfo.InvariantCulture));
+
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void SerializeSettingsToXMLToStreamCorrect()
+        {
+            string StringKey = "string";
+            int IntKet = 1;
+            double DoubleKey = 3.14;
+
+            AppSettings.Setting[nameof(StringKey)] = StringKey;
+            AppSettings.Setting[nameof(IntKet)] = IntKet;
+            AppSettings.Setting[nameof(DoubleKey)] = DoubleKey;
+
+            Stream settingsInXML = AppSettings.Setting.SerializeToXML(new MemoryStream());
+            ClearAllSettings();
+
+            AppSettings.Setting.DeserializeFromXML(settingsInXML, ReplacementStatus.Rewrite);
+
+            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString(), CultureInfo.InvariantCulture));
 
             ClearAllSettings();
         }

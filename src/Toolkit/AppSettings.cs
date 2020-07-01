@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml.Linq;
 using Toolkit.Contracts;
 
 namespace Toolkit
@@ -114,6 +115,8 @@ namespace Toolkit
 
         #region Serialization
 
+        #region JSON
+
         /// <summary>
         /// Deserialize settings from string
         /// </summary>
@@ -132,20 +135,7 @@ namespace Toolkit
 
             if (JsonConvert.DeserializeObject<IDictionary<string, object>>(value) is IDictionary<string, object> loadedSettings)
             {
-                switch (status)
-                {
-                    case ReplacementStatus.Rewrite:
-                        RewriteSettings(loadedSettings);
-                        break;
-                    case ReplacementStatus.Replace:
-                        ReplaceSettings(loadedSettings);
-                        break;
-                    case ReplacementStatus.Add:
-                        AddSettings(loadedSettings);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException($"No expected behavior from {status}");
-                }
+                ResolveCollisions(loadedSettings, status);
             }
             else
             {
@@ -176,6 +166,191 @@ namespace Toolkit
             using (StreamReader sr = new StreamReader(stream))
             {
                 DeserializeFromJSON(sr.ReadToEnd(), status);
+            }
+        }
+
+        /// <summary>
+        /// Convert settings to JSON
+        /// </summary>
+        /// <returns><strong>Serialized string containing settings</strong></returns>
+        public string SerializeToJSON()
+        {
+            return JsonConvert.SerializeObject(settings);
+        }
+
+        /// <summary>
+        /// Write serialized data to a stream
+        /// </summary>
+        /// <param name="stream">The stream at the end of which data will be written</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="AccessViolationException"/>
+        public Stream SerializeToJSON(Stream stream)
+        {
+            Contract.NotNull<Stream, ArgumentNullException>(stream);
+            Contract.Is<AccessViolationException>(stream.CanWrite);
+
+            string JSONString = SerializeToJSON();
+            if (Check.StringNotNullOrWhiteSpace(JSONString) && stream.CanWrite)
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(JSONString);
+                stream.Write(bytes, checked((int)stream.Length), bytes.Length);
+            }
+
+            return stream;
+        }
+
+        #endregion
+
+        #region XML
+
+        /// <summary>
+        /// Deserialize settings from string
+        /// </summary>
+        /// <param name="value">XML string. <strong>Can't be null</strong>.</param>
+        /// <param name="status">Conflict resolution method.
+        /// <para>1. <see cref="ReplacementStatus.Rewrite"/> - Delete all existing settings and add loaded</para>
+        /// <para>2. <see cref="ReplacementStatus.Replace"/> - Add loaded settings replacing existing settings with loaded ones</para>
+        /// <para>3. <see cref="ReplacementStatus.Rewrite"/> - Add loaded settings without overwriting existing ones</para>
+        /// </param>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        /// <exception cref="FormatException"/>
+        public void DeserializeFromXML(in string value, in ReplacementStatus status)
+        {
+            Contract.StringNotNullOrWhiteSpace<ArgumentException>(value);
+
+            ResolveCollisions(LoadXDocument(XDocument.Parse(value)), status);
+        }
+
+        /// <summary>
+        /// Deserialize settings from stream
+        /// </summary>
+        /// <param name="value">XML doc inside stream. <strong>Can't be null</strong>.</param>
+        /// <param name="status">Conflict resolution method.
+        /// <para>1. <see cref="ReplacementStatus.Rewrite"/> - Delete all existing settings and add loaded</para>
+        /// <para>2. <see cref="ReplacementStatus.Replace"/> - Add loaded settings replacing existing settings with loaded ones</para>
+        /// <para>3. <see cref="ReplacementStatus.Rewrite"/> - Add loaded settings without overwriting existing ones</para>
+        /// </param>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="AccessViolationException"/>
+        public void DeserializeFromXML(in Stream stream, in ReplacementStatus status)
+        {
+            Contract.NotNull<Stream, ArgumentException>(stream);
+            Contract.Is<AccessViolationException>(stream.CanRead);
+
+            if (stream.CanSeek)
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+            }            
+
+            ResolveCollisions(LoadXDocument(XDocument.Load(stream)), status);
+        }
+
+        /// <summary>
+        /// Deserialize XDocument to dictionary
+        /// </summary>
+        /// <param name="doc">Loaded dictionary</param>
+        /// <returns><strong>Dictionary with recognized loaded settings</strong></returns>
+        /// <exception cref="ArgumentNullException"/>
+        private IDictionary<string, object> LoadXDocument(XDocument doc)
+        {
+            Contract.NotNull<XDocument, ArgumentNullException>(doc);
+
+            IDictionary<string, object> loadedSettings = new Dictionary<string, object>();
+
+            foreach (var setting in doc.Element("settings").Elements("setting"))
+            {
+                var attribute = setting.Attribute("key");
+                var element = setting.Element("value");
+
+                if (attribute != null && element != null)
+                {
+                    loadedSettings.Add(attribute.Value, element.Value);
+                }
+            }
+
+            return loadedSettings;
+        }
+
+        /// <summary>
+        /// Convert settings to XML
+        /// </summary>
+        /// <returns><strong>Serialized string containing settings</strong></returns>
+        public string SerializeToXML()
+        {
+            return ConvertSettingsToXDocument().ToString();
+        }
+
+        /// <summary>
+        /// Write serialized XML data to a stream
+        /// </summary>
+        /// <param name="stream">The stream at the end of which data will be written</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="AccessViolationException"/>
+        public Stream SerializeToXML(Stream stream)
+        {
+            Contract.NotNull<Stream, ArgumentNullException>(stream);
+            Contract.Is<AccessViolationException>(stream.CanWrite);
+
+            ConvertSettingsToXDocument().Save(stream);
+            return stream;
+        }
+
+        /// <summary>
+        /// Create XML document from current settings
+        /// </summary>
+        /// <returns><strong>Settings in an XML Document. See <seealso cref="XDocument"/>.</strong></returns>
+        private XDocument ConvertSettingsToXDocument()
+        {
+            var sets = new XElement("settings");
+            foreach (var setting in settings)
+            {
+                var attribute = new XAttribute("key", setting.Key);
+                var element = new XElement("value", setting.Value);
+
+                var set = new XElement("setting");
+                set.Add(attribute);
+                set.Add(element);
+
+                sets.Add(set);
+            }
+
+            var doc = new XDocument();
+            doc.Add(sets);
+
+            return doc;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Load settings using status to resolve conflicts
+        /// </summary>
+        /// <param name="loadedSettings">Dictionary with loaded settings</param>
+        /// <param name="status">Conflict resolution method.
+        /// <para>1. <see cref="ReplacementStatus.Rewrite"/> - Delete all existing settings and add loaded</para>
+        /// <para>2. <see cref="ReplacementStatus.Replace"/> - Add loaded settings replacing existing settings with loaded ones</para>
+        /// <para>3. <see cref="ReplacementStatus.Rewrite"/> - Add loaded settings without overwriting existing ones</para>
+        /// </param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        private void ResolveCollisions(in IDictionary<string, object> loadedSettings, in ReplacementStatus status)
+        {
+            Contract.NotNull<IDictionary<string, object>, ArgumentNullException>(loadedSettings);
+
+            switch (status)
+            {
+                case ReplacementStatus.Rewrite:
+                    RewriteSettings(loadedSettings);
+                    break;
+                case ReplacementStatus.Replace:
+                    ReplaceSettings(loadedSettings);
+                    break;
+                case ReplacementStatus.Add:
+                    AddSettings(loadedSettings);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException($"No expected behavior from {status}");
             }
         }
 
@@ -235,36 +410,6 @@ namespace Toolkit
                     this[setting.Key] = setting.Value;
                 }
             }
-        }
-
-        /// <summary>
-        /// Convert settings to JSON
-        /// </summary>
-        /// <returns><strong>Serialized string containing settings</strong></returns>
-        public string SerializeToJSON()
-        {
-            return JsonConvert.SerializeObject(settings);
-        }
-
-        /// <summary>
-        /// Write serialized data to a stream
-        /// </summary>
-        /// <param name="stream">The stream at the end of which data will be written</param>
-        /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="AccessViolationException"/>
-        public Stream SerializeToJSON(Stream stream)
-        {
-            Contract.NotNull<Stream, ArgumentNullException>(stream);
-            Contract.Is<AccessViolationException>(stream.CanWrite);
-
-            string JSONString = SerializeToJSON();
-            if (Check.StringNotNullOrWhiteSpace(JSONString) && stream.CanWrite)
-            {
-                byte[] bytes = Encoding.UTF8.GetBytes(JSONString);
-                stream.Write(bytes, checked((int)stream.Length), bytes.Length);
-            }
-
-            return stream;
         }
 
         #endregion
