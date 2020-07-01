@@ -10,8 +10,12 @@
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/DepthRel/Toolkit</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
 
 </Project>

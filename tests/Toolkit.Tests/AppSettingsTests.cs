@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -88,6 +89,52 @@ namespace Toolkit.Tests
                     Assert.Fail();
                 }
             }
+
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void SerializeSettingsCorrect()
+        {
+            string StringKey = "string";
+            int IntKet = 1;
+            double DoubleKey = 3.14;
+
+            AppSettings.Setting[nameof(StringKey)] = StringKey;
+            AppSettings.Setting[nameof(IntKet)] = IntKet;
+            AppSettings.Setting[nameof(DoubleKey)] = DoubleKey;
+
+            string settingsInJSON = AppSettings.Setting.SerializeToJSON();
+            ClearAllSettings();
+
+            AppSettings.Setting.DeserializeFromJSON(settingsInJSON, ReplacementStatus.Rewrite);
+
+            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString()));
+
+            ClearAllSettings();
+        }
+
+        [TestMethod]
+        public void SerializeSettingsToStreamCorrect()
+        {
+            string StringKey = "string";
+            int IntKet = 1;
+            double DoubleKey = 3.14;
+
+            AppSettings.Setting[nameof(StringKey)] = StringKey;
+            AppSettings.Setting[nameof(IntKet)] = IntKet;
+            AppSettings.Setting[nameof(DoubleKey)] = DoubleKey;
+
+            Stream settingsInJSON = AppSettings.Setting.SerializeToJSON(new MemoryStream());
+            ClearAllSettings();
+
+            AppSettings.Setting.DeserializeFromJSON(settingsInJSON, ReplacementStatus.Rewrite);
+
+            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString()));
 
             ClearAllSettings();
         }
