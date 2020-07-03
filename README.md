@@ -4,7 +4,8 @@
 #### Content
 <ul>
   <li>
-  Contracts - a way to verify the transferred parameters in a concise way. Contracts are intended to replace the cumbersome constructions of condition checks, such as:
+    
+  [Contracts](https://github.com/DepthRel/Toolkit/wiki/Contract) - a way to verify the transferred parameters in a concise way. Contracts are intended to replace the cumbersome constructions of condition checks, such as:
   
   ```csharp
   if (string.IsNullOrWhiteSpace(str?.Trim()))
@@ -30,7 +31,8 @@
   </li>
   
   <li>
-  Check - a static class similar to the Contract class, but returns a Boolean value instead of throwing an exception.
+  
+  [Check](https://github.com/DepthRel/Toolkit/wiki/Check) - a static class similar to the Contract class, but returns a Boolean value instead of throwing an exception.
   
   ```csharp
   if (Check.NotNull<object>(obj)) // true if obj isn't null
@@ -45,7 +47,8 @@
   </li>
   
   <li>
-  Condition - allows you to build a chain of logical conditions.
+  
+  [Condition](https://github.com/DepthRel/Toolkit/wiki/Condition) - allows you to build a chain of logical conditions.
   
   ```csharp
   int a = 10;
@@ -60,7 +63,7 @@
 
   <li>
   
-  BaseViewModel contains an implementation of the `INotifyPropertyChanged` interface with the `OnPropertyChanged()` method to notify observers about a change in the value of the observed object.
+  [BaseViewModel](https://github.com/DepthRel/Toolkit/wiki/BaseViewModel) contains an implementation of the `INotifyPropertyChanged` interface with the `OnPropertyChanged()` method to notify observers about a change in the value of the observed object.
   
   The generic `SetProperty` method is designed to assign values to observable objects and notify about their change.
   </li>
@@ -72,4 +75,4 @@
 
 ### See the [wiki](https://github.com/DepthRel/Toolkit/wiki) for more details.
 
-###### DepthRel, 2020
+###### [DepthRel](https://github.com/DepthRel), 2020
