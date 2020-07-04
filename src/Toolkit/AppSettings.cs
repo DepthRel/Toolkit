@@ -101,6 +101,19 @@ namespace Toolkit
             return null;
         }
 
+        public T TryGetSetting<T>(string key)
+        {
+            if (!string.IsNullOrWhiteSpace(key) && settings.TryGetValue(key, out var setting))
+            {
+                if (setting is T castedSetting)
+                {
+                    return castedSetting;
+                }
+            }
+
+            return default;
+        }
+
         /// <summary>
         /// Delete setting by key
         /// </summary>
@@ -241,7 +254,7 @@ namespace Toolkit
             if (stream.CanSeek)
             {
                 stream.Seek(0, SeekOrigin.Begin);
-            }            
+            }
 
             ResolveCollisions(LoadXDocument(XDocument.Load(stream)), status);
         }

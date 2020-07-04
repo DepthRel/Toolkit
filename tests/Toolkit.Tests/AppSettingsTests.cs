@@ -51,6 +51,12 @@ namespace Toolkit.Tests
 
             Assert.AreEqual(name, AppSettings.Setting.TryGetSetting("name"));
             ClearAllSettings();
+
+            double value = 3.14;
+            AppSettings.Setting["name"] = value;
+
+            Assert.AreEqual(value, AppSettings.Setting.TryGetSetting<double>("name"));
+            ClearAllSettings();
         }
 
         [TestMethod]

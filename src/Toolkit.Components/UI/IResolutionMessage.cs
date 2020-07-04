@@ -2,6 +2,10 @@
 
 namespace Toolkit.Components.UI
 {
+    /// <summary>
+    /// Interface for requesting a solution
+    /// </summary>
+    /// <typeparam name="T">Query result type</typeparam>
     interface IResolutionMessage<T>
     {
         /// <summary>
