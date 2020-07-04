@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Toolkit.ViewModels
+namespace Toolkit.Components.ViewModels
 {
     /// <summary>
     /// Class implementing ICommand interface for simplified implementation of commands

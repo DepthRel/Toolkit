@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Toolkit.ViewModels
+namespace Toolkit.Components.ViewModels
 {
     /// <summary>
     /// <para>An abstract class that represents some convenience for projects using the ViewModel architecture model.</para>

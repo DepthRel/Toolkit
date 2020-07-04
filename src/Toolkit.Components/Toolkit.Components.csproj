@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>DepthRel</Authors>
+    <Company>DepthRel</Company>
+    <RepositoryUrl>https://github.com/DepthRel/Toolkit</RepositoryUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Description>.NET Toolkit branch designed to implement MVVM and interact with UI (without interference with View)</Description>
+  </PropertyGroup>
+
+</Project>

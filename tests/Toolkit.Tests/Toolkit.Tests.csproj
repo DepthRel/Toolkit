@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Toolkit\Toolkit.csproj" />
+    <ProjectReference Include="..\..\src\Toolkit.Components\Toolkit.Components.csproj" />
   </ItemGroup>
 
 </Project>

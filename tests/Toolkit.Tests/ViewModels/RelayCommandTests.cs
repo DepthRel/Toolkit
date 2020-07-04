@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using Toolkit.ViewModels;
+using Toolkit.Components.ViewModels;
 
 namespace Toolkit.Tests.ViewModels
 {
