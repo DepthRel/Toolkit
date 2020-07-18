@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Toolkit.Contracts
 {
@@ -30,9 +31,12 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="arg">Checked object</param>
-        public static void NotNull<T, TEx>(in T arg) where TEx : Exception, new()
+        /// <returns>Checked object</returns>
+        public static T NotNull<T, TEx>(in T arg) where TEx : Exception, new()
         {
             if (arg == null) throw new TEx();
+
+            return arg;
         }
 
         /// <summary>
@@ -41,12 +45,15 @@ namespace Toolkit.Contracts
         /// <typeparam name="T">Type descendant of class Object</typeparam>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="args">Array of objects</param>
-        public static void NotNull<T, TEx>(params T[] args) where TEx : Exception, new()
+        /// <returns>Array of checked objects</returns>
+        public static IEnumerable<T> NotNull<T, TEx>(params T[] args) where TEx : Exception, new()
         {
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) throw new TEx();
             }
+
+            return args;
         }
 
         /// <summary>
@@ -54,12 +61,15 @@ namespace Toolkit.Contracts
         /// </summary>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="args">Array of objects</param>
-        public static void NotNull<TEx>(params object[] args) where TEx : Exception, new()
+        /// <returns>Array of checked objects</returns>
+        public static IEnumerable<object> NotNull<TEx>(params object[] args) where TEx : Exception, new()
         {
             if (!NotNull(args))
             {
                 throw new TEx();
             }
+
+            return args;
         }
 
         #endregion
@@ -71,9 +81,12 @@ namespace Toolkit.Contracts
         /// </summary>
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="arg">Checked string</param>
-        public static void StringNotNullOrWhiteSpace<TEx>(in string arg) where TEx : Exception, new()
+        /// <returns>Original checked string/returns>
+        public static string StringNotNullOrWhiteSpace<TEx>(in string arg) where TEx : Exception, new()
         {
             if (string.IsNullOrWhiteSpace(arg?.Trim())) throw new TEx();
+
+            return arg;
         }
 
         #endregion

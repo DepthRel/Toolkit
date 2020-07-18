@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 using Toolkit.Contracts;
 
 namespace Toolkit.Tests.Contracts
@@ -14,10 +15,10 @@ namespace Toolkit.Tests.Contracts
 
             try
             {
-                Contract.NotNull<object, ArgumentNullException>(obj);
-                Assert.AreEqual(0, 0);
+                var originalCheckedObject = Contract.NotNull<object, ArgumentNullException>(obj);
+                Assert.IsTrue(ReferenceEquals(obj, originalCheckedObject));
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
                 Assert.Fail();
             }
@@ -37,7 +38,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotNull<object, ArgumentNullException>(obj);
                 Assert.Fail($"{nameof(ArgumentNullException)} expected");
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -60,10 +61,15 @@ namespace Toolkit.Tests.Contracts
 
             try
             {
-                Contract.NotNull<object, ArgumentNullException>(objs);
-                Assert.AreEqual(0, 0);
+                var originalCheckedArray = Contract.NotNull<object, ArgumentNullException>(objs).ToArray();
+                Assert.AreEqual(objs.Length, originalCheckedArray.Length);
+
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    Assert.IsTrue(ReferenceEquals(objs[i], originalCheckedArray[i]));
+                }
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 Assert.Fail();
             }
@@ -89,7 +95,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.NotNull<object, ArgumentNullException>(objs);
                 Assert.Fail($"{nameof(ArgumentNullException)} expected");
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 Assert.AreEqual(0, 0);
             }
@@ -106,10 +112,10 @@ namespace Toolkit.Tests.Contracts
 
             try
             {
-                Contract.StringNotNullOrWhiteSpace<ArgumentException>(str);
-                Assert.AreEqual(0, 0);
+                var originalCheckedString = Contract.StringNotNullOrWhiteSpace<ArgumentException>(str);
+                Assert.AreEqual(str, originalCheckedString);
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
                 Assert.Fail();
             }
@@ -129,7 +135,7 @@ namespace Toolkit.Tests.Contracts
                 Contract.StringNotNullOrWhiteSpace<ArgumentException>(str);
                 Assert.Fail($"{nameof(ArgumentException)} expected");
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
                 Assert.AreEqual(0, 0);
             }
