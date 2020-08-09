@@ -8,6 +8,9 @@
     <RepositoryUrl>https://github.com/DepthRel/Toolkit</RepositoryUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Description>.NET Toolkit branch designed to implement MVVM and interact with UI (without interference with View)</Description>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
