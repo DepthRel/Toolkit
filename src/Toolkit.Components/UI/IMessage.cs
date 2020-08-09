@@ -5,7 +5,7 @@ namespace Toolkit.Components.UI
     /// <summary>
     /// Interface for encapsulating a dialog box with a user, without interference with the UI
     /// </summary>
-    interface IMessage
+    public interface IMessage
     {
         /// <summary>
         /// Calling a dialogue for displaying messages

@@ -6,7 +6,7 @@ namespace Toolkit.Components.UI
     /// Interface for requesting a solution
     /// </summary>
     /// <typeparam name="T">Query result type</typeparam>
-    interface IResolutionMessage<T>
+    public interface IResolutionMessage<T>
     {
         /// <summary>
         /// Calling a dialogue for decision making
