@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Toolkit.Components.UI
+namespace Toolkit.Components.Notifications
 {
     /// <summary>
     /// Interface for encapsulating a dialog service with a user, without interference with the UI

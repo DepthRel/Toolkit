@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Toolkit.Components.UI
+namespace Toolkit.Components.Notifications
 {
     /// <summary>
     /// Interface for requesting a solution
