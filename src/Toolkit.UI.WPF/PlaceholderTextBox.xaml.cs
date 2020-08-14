@@ -1,0 +1,170 @@
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using Toolkit.Contracts;
+
+namespace Toolkit.UI.WPF
+{
+    public partial class PlaceholderTextBox : UserControl
+    {
+        #region Dependency properties
+
+        public static readonly DependencyProperty CaretBrushProperty =
+            DependencyProperty.Register("CaretBrush", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
+
+        public static readonly DependencyProperty CloseButtonForegroundProperty =
+            DependencyProperty.Register("CloseButtonForeground", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
+
+        public static readonly DependencyProperty IsReadOnlyProperty =
+            DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(PlaceholderTextBox), new PropertyMetadata(false));
+
+        public static readonly DependencyProperty PlaceholderTextProperty =
+            DependencyProperty.Register("PlaceholderText", typeof(string), typeof(PlaceholderTextBox), new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty ForegroundProperty =
+            DependencyProperty.Register("Foreground", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
+
+        public static readonly DependencyProperty BackgroundProperty =
+            DependencyProperty.Register("Background", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.White));
+
+        public static readonly DependencyProperty PaddingProperty =
+            DependencyProperty.Register("Padding", typeof(Thickness), typeof(PlaceholderTextBox), new PropertyMetadata(new Thickness(0)));
+
+        public static readonly DependencyProperty MaxLengthProperty =
+            DependencyProperty.Register("MaxLength", typeof(int), typeof(PlaceholderTextBox), new PropertyMetadata(0));
+
+        public static readonly DependencyProperty SpellCheckEnableProperty =
+            DependencyProperty.Register("SpellCheckEnable", typeof(bool), typeof(PlaceholderTextBox), new PropertyMetadata(false));
+
+        public static readonly DependencyProperty AcceptsReturnProperty =
+            DependencyProperty.Register("AcceptsReturn", typeof(bool), typeof(PlaceholderTextBox), new PropertyMetadata(false));
+
+        #endregion
+
+        #region Properties
+
+        public Brush CaretBrush
+        {
+            get => (Brush)GetValue(CaretBrushProperty);
+            set => SetValue(CaretBrushProperty, value);
+        }
+
+        public Brush CloseButtonForeground
+        {
+            get => (Brush)GetValue(CloseButtonForegroundProperty);
+            set => SetValue(CloseButtonForegroundProperty, value);
+        }
+
+        public bool IsReadOnly
+        {
+            get => (bool)GetValue(IsReadOnlyProperty);
+            set => SetValue(IsReadOnlyProperty, value);
+        }
+
+        public string PlaceholderText
+        {
+            get => (string)GetValue(PlaceholderTextProperty);
+            set => SetValue(PlaceholderTextProperty, value);
+        }
+
+        public Brush Foreground
+        {
+            get => (Brush)GetValue(ForegroundProperty);
+            set => SetValue(ForegroundProperty, value);
+        }
+
+        public Brush Background
+        {
+            get => (Brush)GetValue(BackgroundProperty);
+            set => SetValue(BackgroundProperty, value);
+        }
+
+        public Thickness Padding
+        {
+            get => (Thickness)GetValue(PaddingProperty);
+            set => SetValue(PaddingProperty, value);
+        }
+
+        public int MaxLength
+        {
+            get => (int)GetValue(MaxLengthProperty);
+            set => SetValue(MaxLengthProperty, value);
+        }
+
+        public bool SpellCheckEnable
+        {
+            get => (bool)GetValue(SpellCheckEnableProperty);
+            set => SetValue(SpellCheckEnableProperty, value);
+        }
+
+        public bool AcceptsReturn
+        {
+            get => (bool)GetValue(AcceptsReturnProperty);
+            set => SetValue(AcceptsReturnProperty, value);
+        }
+
+        private Brush oldForeground;
+
+        private bool isPlaceholderActivated;
+
+        private bool IsPlaceholderActivated
+        {
+            get => isPlaceholderActivated;
+            set
+            {
+                isPlaceholderActivated = value;
+                if (isPlaceholderActivated)
+                {
+                    TextBoxControl.Text = PlaceholderText;
+                    oldForeground = TextBoxControl.Foreground;
+                    TextBoxControl.Foreground = Brushes.Gray;
+                }
+                else
+                {
+                    TextBoxControl.Foreground = oldForeground;
+                    TextBoxControl.Text = string.Empty;
+                }
+            }
+        }
+
+        #endregion
+
+        public PlaceholderTextBox()
+        {
+            InitializeComponent();
+        }
+
+        private void ClearText(object sender, RoutedEventArgs e)
+        {
+            if (!IsPlaceholderActivated)
+            {
+                TextBoxControl.Text = string.Empty;
+                IsPlaceholderActivated = true;
+            }
+        }
+
+        private void ControlGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (IsPlaceholderActivated)
+            {
+                IsPlaceholderActivated = false;
+            }
+        }
+
+        private void ControlLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!Check.StringNotNullOrWhiteSpace(TextBoxControl.Text))
+            {
+                IsPlaceholderActivated = true;
+            }
+        }
+
+        private void TextBoxLoaded(object sender, RoutedEventArgs e)
+        {
+            if (!Check.StringNotNullOrWhiteSpace(TextBoxControl.Text))
+            {
+                IsPlaceholderActivated = true;
+            }
+        }
+    }
+}
