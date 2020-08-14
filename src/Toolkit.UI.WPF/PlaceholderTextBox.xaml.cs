@@ -12,8 +12,8 @@ namespace Toolkit.UI.WPF
         public static readonly DependencyProperty CaretBrushProperty =
             DependencyProperty.Register("CaretBrush", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
 
-        public static readonly DependencyProperty CloseButtonForegroundProperty =
-            DependencyProperty.Register("CloseButtonForeground", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
+        public static readonly DependencyProperty ClearButtonForegroundProperty =
+            DependencyProperty.Register("ClearButtonForeground", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
 
         public static readonly DependencyProperty IsReadOnlyProperty =
             DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(PlaceholderTextBox), new PropertyMetadata(false));
@@ -39,6 +39,12 @@ namespace Toolkit.UI.WPF
         public static readonly DependencyProperty AcceptsReturnProperty =
             DependencyProperty.Register("AcceptsReturn", typeof(bool), typeof(PlaceholderTextBox), new PropertyMetadata(false));
 
+        public static readonly DependencyProperty ClearButtonEnableProperty =
+            DependencyProperty.Register("ClearButtonEnable", typeof(bool), typeof(PlaceholderTextBox), new PropertyMetadata(true));
+
+        public static readonly DependencyProperty ClearButtonVisibilityProperty =
+            DependencyProperty.Register("ClearButtonVisibility", typeof(Visibility), typeof(PlaceholderTextBox), new PropertyMetadata(Visibility.Visible));
+
         #endregion
 
         #region Properties
@@ -49,10 +55,10 @@ namespace Toolkit.UI.WPF
             set => SetValue(CaretBrushProperty, value);
         }
 
-        public Brush CloseButtonForeground
+        public Brush ClearButtonForeground
         {
-            get => (Brush)GetValue(CloseButtonForegroundProperty);
-            set => SetValue(CloseButtonForegroundProperty, value);
+            get => (Brush)GetValue(ClearButtonForegroundProperty);
+            set => SetValue(ClearButtonForegroundProperty, value);
         }
 
         public bool IsReadOnly
@@ -103,7 +109,20 @@ namespace Toolkit.UI.WPF
             set => SetValue(AcceptsReturnProperty, value);
         }
 
+        public bool ClearButtonEnable
+        {
+            get => (bool)GetValue(ClearButtonEnableProperty);
+            set => SetValue(ClearButtonEnableProperty, value);
+        }
+
+        public Visibility ClearButtonVisibility
+        {
+            get => (Visibility)GetValue(ClearButtonVisibilityProperty);
+            set => SetValue(ClearButtonVisibilityProperty, value);
+        }
+
         private Brush oldForeground;
+        private bool oldSpellCheckValue;
 
         private bool isPlaceholderActivated;
 
@@ -116,12 +135,17 @@ namespace Toolkit.UI.WPF
                 if (isPlaceholderActivated)
                 {
                     TextBoxControl.Text = PlaceholderText;
+
                     oldForeground = TextBoxControl.Foreground;
                     TextBoxControl.Foreground = Brushes.Gray;
+
+                    oldSpellCheckValue = SpellCheckEnable;
+                    SpellCheckEnable = false;
                 }
                 else
                 {
                     TextBoxControl.Foreground = oldForeground;
+                    SpellCheckEnable = oldSpellCheckValue;
                     TextBoxControl.Text = string.Empty;
                 }
             }
