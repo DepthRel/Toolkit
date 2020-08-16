@@ -42,7 +42,7 @@
             ClearButtonVisibility="Visible"
             FontSize="20"
             Foreground="White"
-            IsReadOnly="False"
+            IsReadOnly="True"
             MaxLength="10"
             MaxValue="0"
             MinValue="10"

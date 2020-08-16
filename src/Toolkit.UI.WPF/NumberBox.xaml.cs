@@ -363,16 +363,21 @@ namespace Toolkit.UI.WPF
                 ValueDown(this, new RoutedEventArgs());
             }
 
-            // Set placeholder if textbox will be empty
-            if (keyCode == 2)
+            if (!IsReadOnly)
             {
-                if (TextBoxControl.Text.Length < 2 || TextBoxControl.Text.Length == TextBoxControl.SelectionLength)
+                // Set placeholder if textbox will be empty
+                if (keyCode == 2)
                 {
-                    IsPlaceholderActivated = true;
+                    if (TextBoxControl.Text.Length < 2 || TextBoxControl.Text.Length == TextBoxControl.SelectionLength)
+                    {
+                        IsPlaceholderActivated = true;
+                    }
+                    return;
                 }
             }
 
             if (((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && keyCode == 44) // Ctrl+A
+                || ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && keyCode == 46) // Ctrl+C
                 || keyCode > 33 && keyCode < 44
                 || keyCode > 73 && keyCode < 84
                 || keyCode == 2   // Backspace
