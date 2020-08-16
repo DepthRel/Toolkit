@@ -167,7 +167,20 @@ namespace Toolkit
         /// <param name="left">First interval</param>
         /// <param name="right">Second interval</param>
         /// <returns><strong>True if each interval value is equal to each other</strong></returns>
-        public static bool operator ==(Range<T> left, Range<T> right) => left.Left.CompareTo(right.Left) == 0 && left.Right.CompareTo(right.Right) == 0;
+        public static bool operator ==(Range<T> left, Range<T> right)
+        {
+            if (left is null && right is null)
+            {
+                return true;
+            }
+
+            if (left is null || right is null)
+            {
+                return false;
+            }
+
+            return left.Left.CompareTo(right.Left) == 0 && left.Right.CompareTo(right.Right) == 0;
+        }
 
         /// <summary>
         /// Check for inequality of two intervals
@@ -175,7 +188,25 @@ namespace Toolkit
         /// <param name="left">First interval</param>
         /// <param name="right">Second interval</param>
         /// <returns><strong>True if each interval value is not equal to each other</strong></returns>
-        public static bool operator !=(Range<T> left, Range<T> right) => left.Left.CompareTo(right.Left) != 0 || left.Right.CompareTo(right.Right) != 0;
+        public static bool operator !=(Range<T> left, Range<T> right)
+        {
+            if (left is null && right is null)
+            {
+                return false;
+            }
+
+            if (left is null || right is null)
+            {
+                return true;
+            }
+
+            if (left is null || right is null)
+            {
+                return true;
+            }
+
+            return left.Left.CompareTo(right.Left) != 0 || left.Right.CompareTo(right.Right) != 0;
+        }
 
         #endregion
     }

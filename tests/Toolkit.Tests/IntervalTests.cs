@@ -136,6 +136,17 @@ namespace Toolkit.Tests
         }
 
         [TestMethod]
+        public void EqualsWithNullCorrect()
+        {
+            Range<int> firstInterval = new Range<int>(1, 10);
+            Range<int> secondInterval = null;
+
+            Assert.AreEqual(false, firstInterval.Equals(secondInterval));
+            Assert.AreEqual(false, firstInterval == secondInterval);
+            Assert.AreEqual(true, firstInterval != secondInterval);
+        }
+
+        [TestMethod]
         public void NotEqualsCorrect()
         {
             var firstInterval = new Range<int>(1, 10);
