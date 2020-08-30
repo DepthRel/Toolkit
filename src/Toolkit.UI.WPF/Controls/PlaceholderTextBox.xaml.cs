@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Toolkit.Contracts;
 
-namespace Toolkit.UI.WPF
+namespace Toolkit.UI.WPF.Controls
 {
     public partial class PlaceholderTextBox : UserControl
     {

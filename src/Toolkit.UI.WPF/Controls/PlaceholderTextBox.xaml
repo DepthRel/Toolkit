@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Toolkit.UI.WPF.NumberBox"
+    x:Class="Toolkit.UI.WPF.Controls.PlaceholderTextBox"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,9 +18,6 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <TextBox
@@ -28,25 +25,24 @@
             Padding="{Binding ElementName=uc, Path=Padding, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             HorizontalContentAlignment="{Binding ElementName=uc, Path=HorizontalContentAlignment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             VerticalContentAlignment="{Binding ElementName=uc, Path=VerticalContentAlignment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            AcceptsReturn="{Binding ElementName=uc, Path=AcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Background="{Binding ElementName=uc, Path=Background, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             BorderThickness="0"
             CaretBrush="{Binding ElementName=uc, Path=CaretBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Foreground="{Binding ElementName=uc, Path=Foreground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             GotFocus="ControlGotFocus"
-            InputScope="Number"
             IsReadOnly="{Binding ElementName=uc, Path=IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Loaded="TextBoxLoaded"
             LostFocus="ControlLostFocus"
             MaxLength="{Binding ElementName=uc, Path=MaxLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            PreviewKeyDown="PreviewKeyDown"
-            Text="{Binding ElementName=uc, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            SpellCheck.IsEnabled="{Binding ElementName=uc, Path=SpellCheckEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Separator
             Grid.Column="1"
             Width="35"
             Height="0.6"
             Background="Gray"
-            Visibility="{Binding ElementName=uc, Path=StepButtonsVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            Visibility="{Binding ElementName=uc, Path=ClearButtonVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <Separator.LayoutTransform>
                 <RotateTransform Angle="90" />
             </Separator.LayoutTransform>
@@ -57,68 +53,13 @@
             Width="30"
             Background="{Binding ElementName=uc, Path=Background, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             BorderThickness="0"
-            Click="ValueUp"
-            IsEnabled="{Binding ElementName=uc, Path=StepButtonsEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Visibility="{Binding ElementName=uc, Path=StepButtonsVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <Grid>
-                <Path Stroke="{Binding ElementName=uc, Path=StepButtonsForeground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" StrokeThickness="1">
-                    <Path.Data>
-                        <PathGeometry>
-                            <PathFigure IsClosed="False" StartPoint="0, 10">
-                                <LineSegment Point="10, 0" />
-                                <LineSegment Point="20, 10" />
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-                </Path>
-            </Grid>
-        </Button>
-
-        <Button
-            Grid.Column="3"
-            Width="30"
-            Background="{Binding ElementName=uc, Path=Background, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            BorderThickness="0"
-            Click="ValueDown"
-            IsEnabled="{Binding ElementName=uc, Path=StepButtonsEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Visibility="{Binding ElementName=uc, Path=StepButtonsVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <Grid>
-                <Path Stroke="{Binding ElementName=uc, Path=StepButtonsForeground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" StrokeThickness="1">
-                    <Path.Data>
-                        <PathGeometry>
-                            <PathFigure IsClosed="False" StartPoint="0, 0">
-                                <LineSegment Point="10, 10" />
-                                <LineSegment Point="20, 0" />
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-                </Path>
-            </Grid>
-        </Button>
-
-        <Separator
-            Grid.Column="4"
-            Width="35"
-            Height="1"
-            Background="Gray"
-            Visibility="{Binding ElementName=uc, Path=ClearButtonVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <Separator.LayoutTransform>
-                <RotateTransform Angle="90" />
-            </Separator.LayoutTransform>
-        </Separator>
-
-        <Button
-            Grid.Column="5"
-            Width="30"
-            Background="{Binding ElementName=uc, Path=Background, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            BorderThickness="0"
             Click="ClearText"
             IsEnabled="{Binding ElementName=uc, Path=ClearButtonEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Visibility="{Binding ElementName=uc, Path=ClearButtonVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <Grid>
                 <Separator
                     Width="20"
-                    Height="1"
+                    Height="0.8"
                     Background="{Binding ElementName=uc, Path=ClearButtonForeground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <Separator.LayoutTransform>
                         <RotateTransform Angle="45" />
@@ -126,7 +67,7 @@
                 </Separator>
                 <Separator
                     Width="20"
-                    Height="1"
+                    Height="0.8"
                     Background="{Binding ElementName=uc, Path=ClearButtonForeground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <Separator.LayoutTransform>
                         <RotateTransform Angle="135" />
@@ -136,5 +77,4 @@
         </Button>
 
     </Grid>
-
 </UserControl>
