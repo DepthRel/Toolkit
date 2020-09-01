@@ -63,7 +63,7 @@ namespace Toolkit.UI.WPF.Controls
             DependencyProperty.Register("PrimaryButtonContent", typeof(object), typeof(DialogBox), new PropertyMetadata("Apply"));
 
         public static readonly DependencyProperty SecondaryButtonContentProperty =
-            DependencyProperty.Register("SecondaryButtonContent", typeof(object), typeof(DialogBox), new PropertyMetadata("Primary"));
+            DependencyProperty.Register("SecondaryButtonContent", typeof(object), typeof(DialogBox), new PropertyMetadata("Secondary"));
 
         public static readonly DependencyProperty CloseButtonContentProperty =
             DependencyProperty.Register("CloseButtonContent", typeof(object), typeof(DialogBox), new PropertyMetadata("Close"));
