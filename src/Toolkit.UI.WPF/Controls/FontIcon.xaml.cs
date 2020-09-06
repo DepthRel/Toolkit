@@ -10,7 +10,54 @@ namespace Toolkit.UI.WPF.Controls
 {
     public partial class FontIcon : UserControl
     {
-        private static readonly IDictionary<Icon, string> Routing = new Dictionary<Icon, string>()
+        private static readonly IDictionary<Icon, string> Routing = GetRouting;
+
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(string), typeof(FontIcon),
+                new FrameworkPropertyMetadata(StringToIcon(Icon.Unknown.ToString()),
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    new PropertyChangedCallback((d, e) => { }),
+                    new CoerceValueCallback((d, obj) => StringToIcon((string)obj))));
+
+        public Icon Icon
+        {
+            get => (Icon)GetValue(IconProperty);
+            set => SetValue(IconProperty, StringToIcon(Routing[value]));
+        }
+
+        public FontIcon()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// Getting an icon from a title
+        /// </summary>
+        /// <param name="icon">
+        ///     Icon name taken from enum <see cref="Controls.Icon"/>.
+        ///     Read more at <strong><see cref="https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font"/></strong>
+        /// </param>
+        /// <returns><strong></strong></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static string StringToIcon(string icon)
+        {
+            Contract.StringNotNullOrWhiteSpace<ArgumentException>(icon, "Input string is not formatted correctly");
+
+            var isFind = Enum.TryParse<Icon>(icon, out var selectedIcon);
+            var symbol = isFind ? Routing[selectedIcon] : Routing[Icon.StatusErrorFull];
+
+            if (int.TryParse(symbol, NumberStyles.HexNumber, null, out var symbolCode))
+            {
+                return ((char)symbolCode).ToString();
+            }
+
+            return icon;
+        }
+
+        /// <summary>
+        /// The location of the initialization is at the bottom because a NullReferenceException is thrown when moving the field down
+        /// </summary>
+        private static IDictionary<Icon, string> GetRouting => new Dictionary<Icon, string>()
         {
             [Icon.GlobalNavigationButton] = "E700",
             [Icon.Wifi] = "E701",
@@ -1372,42 +1419,5 @@ namespace Toolkit.UI.WPF.Controls
             [Icon.UpdateStatusDot] = "F83F",
             [Icon.Eject] = "F847"
         };
-
-        public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(string), typeof(FontIcon),
-                new FrameworkPropertyMetadata(StringToIcon(Icon.Unknown.ToString()),
-                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
-                    new PropertyChangedCallback((d, e) => { }),
-                    new CoerceValueCallback((d, obj) =>
-                    {
-                        return StringToIcon((string)obj);
-                    })));
-
-        public Icon Icon
-        {
-            get => (Icon)GetValue(IconProperty);
-            set => SetValue(IconProperty, StringToIcon(Routing[value]));
-        }
-
-        public FontIcon()
-        {
-            InitializeComponent();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static string StringToIcon(string icon)
-        {
-            Contract.StringNotNullOrWhiteSpace<ArgumentException>(icon, "Input string is not formatted correctly");
-
-            var isFind = Enum.TryParse<Icon>(icon, out var selectedIcon);
-            var symbol = isFind ? Routing[selectedIcon] : Routing[Icon.StatusErrorFull];
-
-            if (int.TryParse(symbol, NumberStyles.HexNumber, null, out var symbolCode))
-            {
-                return ((char)symbolCode).ToString();
-            }
-
-            return icon;
-        }
     }
 }
