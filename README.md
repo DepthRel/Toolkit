@@ -1,7 +1,7 @@
 # Toolkit
-### .NET Toolkit include tools for comfortable dev
+### .NET Toolkit is a tool for simplify the development of classes, business logic, UI elements, etc.
 
-#### Content
+## [Toolkit](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit)
 <ul>
   <li>
     
@@ -10,7 +10,7 @@
   ```csharp
   if (string.IsNullOrWhiteSpace(str?.Trim()))
   {
-       throw new Exception("The value is incorrect");
+      throw new Exception("The value is incorrect");
   }
   ```
   Instead, just write:
@@ -60,7 +60,16 @@
                .Not() // now it's false
   ```
   </li>
-
+  
+  <li>
+  And others...
+  </li>
+</ul>
+  
+  ## [Toolkit.Components](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit.Components)
+  
+<ul>
+  
   <li>
   
   [BaseViewModel](https://github.com/DepthRel/Toolkit/wiki/BaseViewModel) contains an implementation of the `INotifyPropertyChanged` interface with the `OnPropertyChanged()` method to notify observers about a change in the value of the observed object.
@@ -69,10 +78,60 @@
   </li>
   
   <li>
-  And many others...
+  
+  [IMessage](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.Components/Notifications/IMessage.cs) is an interface for solving the problem of calling a dialog from a ViewModel without interacting with the View layer.
+  
+  ```csharp
+  // View layer
+  public class Message : IMessage
+  {
+      public void Report() { MessageBox.Show("Message for user" );
+  }
+  
+  public MainWindow()
+  {
+      DataContext = new ViewModel(new Message());
+  }
+  
+  // ViewModel layer
+  class ViewModel
+  {
+      public ViewModel(IMessage message)
+      {
+          message.Report();
+      }
+  }
+  ```
+  </li>
+  
+  <li>
+  And others...
   </li>
 </ul>
 
-### See the [wiki](https://github.com/DepthRel/Toolkit/wiki) for more details.
+  ## [Toolkit.UI.WPF](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit.UI.WPF)
+  
+<ul>
+  
+  <li>
+  
+  [PlaceholderTextBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/PlaceholderTextBox.xaml.cs), [NumberBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/NumberBox.xaml.cs), [CompactButton](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/CompactButton.xaml.cs), [FontIcon](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/FontIcon.xaml.cs)
+  
+  ![Controls](https://i.ibb.co/whQZ5VP/image.png)
+  
+  </li>
+  
+  <li>
+  
+  [DialogBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/DialogBox.xaml.cs)
+  
+  ![DialogBox](https://i.ibb.co/JdS6s5X/image.png)
+  
+  <li>
+  And others...
+  </li>
+</ul>
+
+### See [wiki](https://github.com/DepthRel/Toolkit/wiki) for more details.
 
 ###### [DepthRel](https://github.com/DepthRel), 2020
