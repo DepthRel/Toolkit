@@ -5,7 +5,7 @@
     <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>.NET Toolkit branch is designed to implement reusable controls, converters, and other UI elements for WPF</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

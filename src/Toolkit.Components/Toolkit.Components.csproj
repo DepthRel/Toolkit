@@ -10,7 +10,7 @@
     <Description>.NET Toolkit branch designed to implement MVVM and interact with UI (without interference with View)</Description>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
-    <Version>1.0.2</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
 </Project>
