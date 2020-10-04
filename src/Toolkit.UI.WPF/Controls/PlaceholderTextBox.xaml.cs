@@ -9,6 +9,9 @@ namespace Toolkit.UI.WPF.Controls
     {
         #region Dependency properties
 
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(PlaceholderTextBox), new PropertyMetadata(default));
+
         public static readonly DependencyProperty CaretBrushProperty =
             DependencyProperty.Register("CaretBrush", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
 
@@ -48,6 +51,12 @@ namespace Toolkit.UI.WPF.Controls
         #endregion
 
         #region Properties
+
+        public string Text
+        {
+            get => (string)GetValue(ContentProperty);
+            set => SetValue(ContentProperty, value);
+        }
 
         public Brush CaretBrush
         {

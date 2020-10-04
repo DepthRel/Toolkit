@@ -200,11 +200,6 @@ namespace Toolkit
                 return true;
             }
 
-            if (left is null || right is null)
-            {
-                return true;
-            }
-
             return left.Left.CompareTo(right.Left) != 0 || left.Right.CompareTo(right.Right) != 0;
         }
 

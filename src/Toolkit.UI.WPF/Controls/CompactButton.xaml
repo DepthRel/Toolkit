@@ -1,0 +1,90 @@
+﻿<UserControl
+    x:Class="Toolkit.UI.WPF.Controls.CompactButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Toolkit.UI.WPF.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Toolkit.UI.WPF.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="uc"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+            <Style TargetType="{x:Type Button}">
+                <Style.Setters>
+                    <Setter Property="Width" Value="40" />
+                    <Setter Property="Height" Value="50" />
+                    <Setter Property="BorderThickness" Value=".3" />
+                </Style.Setters>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Button
+        Width="{Binding ElementName=uc, Path=Width, Mode=TwoWay}"
+        Height="{Binding ElementName=uc, Path=Height, Mode=TwoWay}"
+        HorizontalContentAlignment="{Binding ElementName=uc, Path=HorizontalContentAlignment, Mode=TwoWay}"
+        VerticalContentAlignment="{Binding ElementName=uc, Path=VerticalContentAlignment, Mode=TwoWay}"
+        Background="{Binding ElementName=uc, Path=Background, Mode=OneWay}"
+        BorderBrush="{Binding ElementName=uc, Path=BorderBrush, Mode=TwoWay}"
+        BorderThickness="{Binding ElementName=uc, Path=BorderThickness, Mode=TwoWay}"
+        Command="{Binding ElementName=uc, Path=Command, Mode=TwoWay}"
+        CommandParameter="{Binding ElementName=uc, Path=CommandParameter, Mode=TwoWay}"
+        FontSize="{Binding ElementName=uc, Path=FontSize, Mode=TwoWay}"
+        MouseEnter="MouseEnter"
+        MouseLeave="MouseLeave">
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+            <local:FontIcon
+                x:Name="UCIcon"
+                Margin="{Binding ElementName=uc, Path=IconMargin, Mode=TwoWay}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Effect="{Binding ElementName=uc, Path=IconDropShadowEffect, Mode=TwoWay}"
+                FontSize="{Binding ElementName=uc, Path=IconSize, Mode=TwoWay}"
+                Foreground="{Binding ElementName=uc, Path=IconForeground, Mode=OneWay}"
+                Icon="{Binding ElementName=uc, Path=Icon, Mode=TwoWay}" />
+            <StackPanel
+                Name="UCContent"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <Separator
+                    Name="UCSeparator"
+                    Width="{Binding ElementName=uc, Path=SeparatorHeight, Mode=TwoWay}"
+                    Height=".6"
+                    Margin="{Binding ElementName=uc, Path=SeparatorMargin, Mode=TwoWay}"
+                    Foreground="{Binding ElementName=uc, Path=SeparatorForeground, Mode=OneWay}"
+                    Visibility="{Binding ElementName=uc, Path=SeparatorVisibility, Mode=TwoWay}">
+                    <Separator.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </Separator.LayoutTransform>
+                </Separator>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Margin="{Binding ElementName=uc, Path=TextMargin, Mode=TwoWay}"
+                        VerticalAlignment="Center"
+                        FontSize="{Binding ElementName=uc, Path=TextSize, Mode=TwoWay}"
+                        Foreground="{Binding ElementName=uc, Path=TextForeground, Mode=TwoWay}"
+                        Text="{Binding ElementName=uc, Path=Text, Mode=TwoWay}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Margin="{Binding ElementName=uc, Path=DescriptionMargin, Mode=TwoWay}"
+                        VerticalAlignment="Top"
+                        FontSize="{Binding ElementName=uc, Path=DescriptionSize, Mode=TwoWay}"
+                        Foreground="{Binding ElementName=uc, Path=DescriptionForeground, Mode=TwoWay}"
+                        Text="{Binding ElementName=uc, Path=Description, Mode=TwoWay}"
+                        Visibility="{Binding ElementName=uc, Path=Description, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}" />
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </Button>
+
+</UserControl>

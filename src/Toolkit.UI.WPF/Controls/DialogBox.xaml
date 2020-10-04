@@ -21,14 +21,14 @@
         <converters:DialogBoxButtonsToVisibilityConverter x:Key="DialogBoxButtonsToVisibilityConverter" />
     </Window.Resources>
 
-    <Grid Margin="10" Background="{Binding ElementName=uc, Path=Background, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+    <Grid Margin="10" Background="{Binding ElementName=uc, Path=Background, Mode=OneWay}">
         <Grid.Effect>
             <DropShadowEffect
                 BlurRadius="8"
                 Direction="-90"
                 RenderingBias="Quality"
                 ShadowDepth="0"
-                Color="{Binding ElementName=uc, Path=BorderBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                Color="{Binding ElementName=uc, Path=BorderBrush, Mode=TwoWay}" />
         </Grid.Effect>
 
         <Grid>
@@ -41,12 +41,12 @@
             </Grid.RowDefinitions>
 
             <ContentControl
-                Margin="{Binding ElementName=uc, Path=HeaderMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                HorizontalAlignment="{Binding ElementName=uc, Path=HeaderHorizontalAlignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                VerticalAlignment="{Binding ElementName=uc, Path=HeaderVerticalAlignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Content="{Binding ElementName=uc, Path=Header, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Margin="{Binding ElementName=uc, Path=HeaderMargin, Mode=TwoWay}"
+                HorizontalAlignment="{Binding ElementName=uc, Path=HeaderHorizontalAlignment, Mode=TwoWay}"
+                VerticalAlignment="{Binding ElementName=uc, Path=HeaderVerticalAlignment, Mode=TwoWay}"
+                Content="{Binding ElementName=uc, Path=Header, Mode=TwoWay}"
                 FontSize="28"
-                Foreground="{Binding ElementName=uc, Path=HeaderForeground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                Foreground="{Binding ElementName=uc, Path=HeaderForeground, Mode=OneWay}" />
 
             <Separator
                 Grid.Row="1"
@@ -55,11 +55,11 @@
 
             <ContentControl
                 Grid.Row="2"
-                Margin="{Binding ElementName=uc, Path=ContentMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                HorizontalAlignment="{Binding ElementName=uc, Path=ContentHorizontalAlignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                VerticalAlignment="{Binding ElementName=uc, Path=ContentVerticalAlignment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Content="{Binding ElementName=uc, Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                Foreground="{Binding ElementName=uc, Path=ContentForeground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                Margin="{Binding ElementName=uc, Path=ContentMargin, Mode=TwoWay}"
+                HorizontalAlignment="{Binding ElementName=uc, Path=ContentHorizontalAlignment, Mode=TwoWay}"
+                VerticalAlignment="{Binding ElementName=uc, Path=ContentVerticalAlignment, Mode=TwoWay}"
+                Content="{Binding ElementName=uc, Path=Content, Mode=TwoWay}"
+                Foreground="{Binding ElementName=uc, Path=ContentForeground, Mode=OneWay}" />
 
             <Grid Grid.Row="3" HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
@@ -70,50 +70,50 @@
 
                 <!--  Close button  -->
                 <Button
-                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay}"
+                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay}"
+                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay}"
+                    Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay}"
                     Click="DialogClose"
-                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay}"
+                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay}"
+                    Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay}"
                     IsCancel="True"
-                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Close}">
-                    <ContentControl Content="{Binding ElementName=uc, Path=CloseButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Close}">
+                    <ContentControl Content="{Binding ElementName=uc, Path=CloseButtonContent, Mode=TwoWay}" />
                 </Button>
 
                 <!--  Secondary button  -->
                 <Button
                     Grid.Column="1"
-                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay}"
+                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay}"
+                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay}"
+                    Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay}"
                     Click="Select"
-                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay}"
+                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay}"
+                    Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay}"
                     Tag="Secondary"
-                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Secondary}">
-                    <ContentControl Content="{Binding ElementName=uc, Path=SecondaryButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Secondary}">
+                    <ContentControl Content="{Binding ElementName=uc, Path=SecondaryButtonContent, Mode=TwoWay}" />
                 </Button>
 
                 <!--  Primary button  -->
                 <Button
                     Grid.Column="2"
-                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay}"
+                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay}"
+                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay}"
+                    Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay}"
                     Click="Select"
-                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay}"
+                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay}"
+                    Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay}"
                     IsDefault="True"
                     Tag="Primary"
-                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Primary}">
-                    <ContentControl Content="{Binding ElementName=uc, Path=PrimaryButtonContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Primary}">
+                    <ContentControl Content="{Binding ElementName=uc, Path=PrimaryButtonContent, Mode=TwoWay}" />
                 </Button>
             </Grid>
         </Grid>
