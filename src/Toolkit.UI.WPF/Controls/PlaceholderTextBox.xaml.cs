@@ -54,8 +54,17 @@ namespace Toolkit.UI.WPF.Controls
 
         public string Text
         {
-            get => (string)GetValue(ContentProperty);
-            set => SetValue(ContentProperty, value);
+            get
+            {
+                if (IsPlaceholderActivated)
+                {
+                    return string.Empty;
+                }
+
+                return (string)GetValue(TextProperty);
+            }
+
+            set => SetValue(TextProperty, value);
         }
 
         public Brush CaretBrush
