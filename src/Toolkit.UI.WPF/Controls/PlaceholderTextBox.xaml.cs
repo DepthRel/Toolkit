@@ -24,13 +24,13 @@ namespace Toolkit.UI.WPF.Controls
         public static readonly DependencyProperty PlaceholderTextProperty =
             DependencyProperty.Register("PlaceholderText", typeof(string), typeof(PlaceholderTextBox), new PropertyMetadata(string.Empty));
 
-        public static readonly DependencyProperty ForegroundProperty =
+        public static new readonly DependencyProperty ForegroundProperty =
             DependencyProperty.Register("Foreground", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.Black));
 
-        public static readonly DependencyProperty BackgroundProperty =
+        public static new readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register("Background", typeof(Brush), typeof(PlaceholderTextBox), new PropertyMetadata(Brushes.White));
 
-        public static readonly DependencyProperty PaddingProperty =
+        public static new readonly DependencyProperty PaddingProperty =
             DependencyProperty.Register("Padding", typeof(Thickness), typeof(PlaceholderTextBox), new PropertyMetadata(new Thickness(0)));
 
         public static readonly DependencyProperty MaxLengthProperty =
@@ -82,19 +82,19 @@ namespace Toolkit.UI.WPF.Controls
             set => SetValue(PlaceholderTextProperty, value);
         }
 
-        public Brush Foreground
+        public new Brush Foreground
         {
             get => (Brush)GetValue(ForegroundProperty);
             set => SetValue(ForegroundProperty, value);
         }
 
-        public Brush Background
+        public new Brush Background
         {
             get => (Brush)GetValue(BackgroundProperty);
             set => SetValue(BackgroundProperty, value);
         }
 
-        public Thickness Padding
+        public new Thickness Padding
         {
             get => (Thickness)GetValue(PaddingProperty);
             set => SetValue(PaddingProperty, value);

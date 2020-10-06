@@ -28,7 +28,7 @@
                 Direction="-90"
                 RenderingBias="Quality"
                 ShadowDepth="0"
-                Color="{Binding ElementName=uc, Path=BorderBrush, Mode=TwoWay}" />
+                Color="{Binding ElementName=uc, Path=BorderBrush, Mode=OneWay}" />
         </Grid.Effect>
 
         <Grid>
@@ -41,10 +41,10 @@
             </Grid.RowDefinitions>
 
             <ContentControl
-                Margin="{Binding ElementName=uc, Path=HeaderMargin, Mode=TwoWay}"
-                HorizontalAlignment="{Binding ElementName=uc, Path=HeaderHorizontalAlignment, Mode=TwoWay}"
-                VerticalAlignment="{Binding ElementName=uc, Path=HeaderVerticalAlignment, Mode=TwoWay}"
-                Content="{Binding ElementName=uc, Path=Header, Mode=TwoWay}"
+                Margin="{Binding ElementName=uc, Path=HeaderMargin, Mode=OneWay}"
+                HorizontalAlignment="{Binding ElementName=uc, Path=HeaderHorizontalAlignment, Mode=OneWay}"
+                VerticalAlignment="{Binding ElementName=uc, Path=HeaderVerticalAlignment, Mode=OneWay}"
+                Content="{Binding ElementName=uc, Path=Header, Mode=OneWay}"
                 FontSize="28"
                 Foreground="{Binding ElementName=uc, Path=HeaderForeground, Mode=OneWay}" />
 
@@ -55,10 +55,10 @@
 
             <ContentControl
                 Grid.Row="2"
-                Margin="{Binding ElementName=uc, Path=ContentMargin, Mode=TwoWay}"
-                HorizontalAlignment="{Binding ElementName=uc, Path=ContentHorizontalAlignment, Mode=TwoWay}"
-                VerticalAlignment="{Binding ElementName=uc, Path=ContentVerticalAlignment, Mode=TwoWay}"
-                Content="{Binding ElementName=uc, Path=Content, Mode=TwoWay}"
+                Margin="{Binding ElementName=uc, Path=ContentMargin, Mode=OneWay}"
+                HorizontalAlignment="{Binding ElementName=uc, Path=ContentHorizontalAlignment, Mode=OneWay}"
+                VerticalAlignment="{Binding ElementName=uc, Path=ContentVerticalAlignment, Mode=OneWay}"
+                Content="{Binding ElementName=uc, Path=Content, Mode=OneWay}"
                 Foreground="{Binding ElementName=uc, Path=ContentForeground, Mode=OneWay}" />
 
             <Grid Grid.Row="3" HorizontalAlignment="Right">
@@ -70,50 +70,50 @@
 
                 <!--  Close button  -->
                 <Button
-                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay}"
-                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay}"
-                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay}"
+                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=OneWay}"
+                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=OneWay}"
+                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=OneWay}"
                     Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay}"
                     Click="DialogClose"
-                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay}"
-                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay}"
+                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=OneWay}"
+                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=OneWay}"
                     Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay}"
                     IsCancel="True"
-                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Close}">
-                    <ContentControl Content="{Binding ElementName=uc, Path=CloseButtonContent, Mode=TwoWay}" />
+                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=OneWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Close}">
+                    <ContentControl Content="{Binding ElementName=uc, Path=CloseButtonContent, Mode=OneWay}" />
                 </Button>
 
                 <!--  Secondary button  -->
                 <Button
                     Grid.Column="1"
-                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay}"
-                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay}"
-                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay}"
+                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=OneWay}"
+                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=OneWay}"
+                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=OneWay}"
                     Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay}"
                     Click="Select"
-                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay}"
-                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay}"
+                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=OneWay}"
+                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=OneWay}"
                     Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay}"
                     Tag="Secondary"
-                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Secondary}">
-                    <ContentControl Content="{Binding ElementName=uc, Path=SecondaryButtonContent, Mode=TwoWay}" />
+                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=OneWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Secondary}">
+                    <ContentControl Content="{Binding ElementName=uc, Path=SecondaryButtonContent, Mode=OneWay}" />
                 </Button>
 
                 <!--  Primary button  -->
                 <Button
                     Grid.Column="2"
-                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=TwoWay}"
-                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=TwoWay}"
-                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=TwoWay}"
+                    Width="{Binding ElementName=uc, Path=ButtonsWidth, Mode=OneWay}"
+                    Height="{Binding ElementName=uc, Path=ButtonsHeight, Mode=OneWay}"
+                    Margin="{Binding ElementName=uc, Path=ButtonsMargin, Mode=OneWay}"
                     Background="{Binding ElementName=uc, Path=ButtonsBackground, Mode=OneWay}"
                     Click="Select"
-                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=TwoWay}"
-                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=TwoWay}"
+                    FontFamily="{Binding ElementName=uc, Path=ButtonsFontFamily, Mode=OneWay}"
+                    FontSize="{Binding ElementName=uc, Path=ButtonsFontSize, Mode=OneWay}"
                     Foreground="{Binding ElementName=uc, Path=ButtonsForeground, Mode=OneWay}"
                     IsDefault="True"
                     Tag="Primary"
-                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=TwoWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Primary}">
-                    <ContentControl Content="{Binding ElementName=uc, Path=PrimaryButtonContent, Mode=TwoWay}" />
+                    Visibility="{Binding ElementName=uc, Path=ButtonsConfiguration, Mode=OneWay, Converter={StaticResource DialogBoxButtonsToVisibilityConverter}, ConverterParameter=Primary}">
+                    <ContentControl Content="{Binding ElementName=uc, Path=PrimaryButtonContent, Mode=OneWay}" />
                 </Button>
             </Grid>
         </Grid>

@@ -11,9 +11,9 @@
     mc:Ignorable="d">
 
     <Grid
-        Width="{Binding ElementName=uc, Path=Width, Mode=TwoWay}"
-        Height="{Binding ElementName=uc, Path=Height, Mode=TwoWay}"
-        Background="{Binding ElementName=uc, Path=Background, Mode=TwoWay}">
+        Width="{Binding ElementName=uc, Path=Width, Mode=OneWay}"
+        Height="{Binding ElementName=uc, Path=Height, Mode=OneWay}"
+        Background="{Binding ElementName=uc, Path=Background, Mode=OneWay}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
@@ -21,29 +21,29 @@
         </Grid.ColumnDefinitions>
 
         <TextBox
-            Text="{Binding ElementName=uc, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Name="TextBoxControl"
-            Padding="{Binding ElementName=uc, Path=Padding, Mode=TwoWay}"
-            HorizontalContentAlignment="{Binding ElementName=uc, Path=HorizontalContentAlignment, Mode=TwoWay}"
-            VerticalContentAlignment="{Binding ElementName=uc, Path=VerticalContentAlignment, Mode=TwoWay}"
-            AcceptsReturn="{Binding ElementName=uc, Path=AcceptsReturn, Mode=TwoWay}"
-            Background="{Binding ElementName=uc, Path=Background, Mode=TwoWay}"
+            Padding="{Binding ElementName=uc, Path=Padding, Mode=OneWay}"
+            HorizontalContentAlignment="{Binding ElementName=uc, Path=HorizontalContentAlignment, Mode=OneWay}"
+            VerticalContentAlignment="{Binding ElementName=uc, Path=VerticalContentAlignment, Mode=OneWay}"
+            AcceptsReturn="{Binding ElementName=uc, Path=AcceptsReturn, Mode=OneWay}"
+            Background="{Binding ElementName=uc, Path=Background, Mode=OneWay}"
             BorderThickness="0"
-            CaretBrush="{Binding ElementName=uc, Path=CaretBrush, Mode=TwoWay}"
-            Foreground="{Binding ElementName=uc, Path=Foreground, Mode=TwoWay}"
+            CaretBrush="{Binding ElementName=uc, Path=CaretBrush, Mode=OneWay}"
+            Foreground="{Binding ElementName=uc, Path=Foreground, Mode=OneWay}"
             GotFocus="ControlGotFocus"
-            IsReadOnly="{Binding ElementName=uc, Path=IsReadOnly, Mode=TwoWay}"
+            IsReadOnly="{Binding ElementName=uc, Path=IsReadOnly, Mode=OneWay}"
             Loaded="TextBoxLoaded"
             LostFocus="ControlLostFocus"
-            MaxLength="{Binding ElementName=uc, Path=MaxLength, Mode=TwoWay}"
-            SpellCheck.IsEnabled="{Binding ElementName=uc, Path=SpellCheckEnable, Mode=TwoWay}" />
+            MaxLength="{Binding ElementName=uc, Path=MaxLength, Mode=OneWay}"
+            SpellCheck.IsEnabled="{Binding ElementName=uc, Path=SpellCheckEnable, Mode=OneWay}"
+            Text="{Binding ElementName=uc, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Separator
             Grid.Column="1"
             Width="35"
             Height="0.6"
             Background="Gray"
-            Visibility="{Binding ElementName=uc, Path=ClearButtonVisibility, Mode=TwoWay}">
+            Visibility="{Binding ElementName=uc, Path=ClearButtonVisibility, Mode=OneWay}">
             <Separator.LayoutTransform>
                 <RotateTransform Angle="90" />
             </Separator.LayoutTransform>
@@ -52,16 +52,16 @@
         <Button
             Grid.Column="2"
             Width="30"
-            Background="{Binding ElementName=uc, Path=Background, Mode=TwoWay}"
+            Background="{Binding ElementName=uc, Path=Background, Mode=OneWay}"
             BorderThickness="0"
             Click="ClearText"
-            IsEnabled="{Binding ElementName=uc, Path=ClearButtonEnable, Mode=TwoWay}"
-            Visibility="{Binding ElementName=uc, Path=ClearButtonVisibility, Mode=TwoWay}">
+            IsEnabled="{Binding ElementName=uc, Path=ClearButtonEnable, Mode=OneWay}"
+            Visibility="{Binding ElementName=uc, Path=ClearButtonVisibility, Mode=OneWay}">
             <Grid>
                 <Separator
                     Width="20"
                     Height="0.8"
-                    Background="{Binding ElementName=uc, Path=ClearButtonForeground, Mode=TwoWay}">
+                    Background="{Binding ElementName=uc, Path=ClearButtonForeground, Mode=OneWay}">
                     <Separator.LayoutTransform>
                         <RotateTransform Angle="45" />
                     </Separator.LayoutTransform>
@@ -69,7 +69,7 @@
                 <Separator
                     Width="20"
                     Height="0.8"
-                    Background="{Binding ElementName=uc, Path=ClearButtonForeground, Mode=TwoWay}">
+                    Background="{Binding ElementName=uc, Path=ClearButtonForeground, Mode=OneWay}">
                     <Separator.LayoutTransform>
                         <RotateTransform Angle="135" />
                     </Separator.LayoutTransform>

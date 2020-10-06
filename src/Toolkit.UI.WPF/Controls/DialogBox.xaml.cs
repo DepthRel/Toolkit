@@ -31,7 +31,7 @@ namespace Toolkit.UI.WPF.Controls
 
         #region Content
 
-        public static readonly DependencyProperty ContentProperty =
+        public static new readonly DependencyProperty ContentProperty =
             DependencyProperty.Register("Content", typeof(object), typeof(DialogBox), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty ContentForegroundProperty =
@@ -85,10 +85,10 @@ namespace Toolkit.UI.WPF.Controls
 
         #endregion
 
-        public static readonly DependencyProperty BorderBrushProperty =
+        public static new readonly DependencyProperty BorderBrushProperty =
             DependencyProperty.Register("BorderBrush", typeof(Color), typeof(DialogBox), new PropertyMetadata(new Color() { A = 0, R = 0, G = 0, B = 0 }));
 
-        public static readonly DependencyProperty BackgroundProperty =
+        public static new readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register("Background", typeof(Brush), typeof(DialogBox), new PropertyMetadata(Brushes.White));
 
         #endregion
@@ -131,7 +131,7 @@ namespace Toolkit.UI.WPF.Controls
 
         #region Content
 
-        public object Content
+        public new object Content
         {
             get => GetValue(ContentProperty);
             set => SetValue(ContentProperty, value);
@@ -233,13 +233,13 @@ namespace Toolkit.UI.WPF.Controls
 
         #endregion
 
-        public Color BorderBrush
+        public new Color BorderBrush
         {
             get => (Color)GetValue(BorderBrushProperty);
             set => SetValue(BorderBrushProperty, value);
         }
 
-        public Brush Background
+        public new Brush Background
         {
             get => (Brush)GetValue(BackgroundProperty);
             set => SetValue(BackgroundProperty, value);

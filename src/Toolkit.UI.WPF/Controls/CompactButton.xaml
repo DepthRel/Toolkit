@@ -25,39 +25,39 @@
     </UserControl.Resources>
 
     <Button
-        Width="{Binding ElementName=uc, Path=Width, Mode=TwoWay}"
-        Height="{Binding ElementName=uc, Path=Height, Mode=TwoWay}"
-        HorizontalContentAlignment="{Binding ElementName=uc, Path=HorizontalContentAlignment, Mode=TwoWay}"
-        VerticalContentAlignment="{Binding ElementName=uc, Path=VerticalContentAlignment, Mode=TwoWay}"
+        Width="{Binding ElementName=uc, Path=Width, Mode=OneWay}"
+        Height="{Binding ElementName=uc, Path=Height, Mode=OneWay}"
+        HorizontalContentAlignment="{Binding ElementName=uc, Path=HorizontalContentAlignment, Mode=OneWay}"
+        VerticalContentAlignment="{Binding ElementName=uc, Path=VerticalContentAlignment, Mode=OneWay}"
         Background="{Binding ElementName=uc, Path=Background, Mode=OneWay}"
-        BorderBrush="{Binding ElementName=uc, Path=BorderBrush, Mode=TwoWay}"
-        BorderThickness="{Binding ElementName=uc, Path=BorderThickness, Mode=TwoWay}"
-        Command="{Binding ElementName=uc, Path=Command, Mode=TwoWay}"
-        CommandParameter="{Binding ElementName=uc, Path=CommandParameter, Mode=TwoWay}"
-        FontSize="{Binding ElementName=uc, Path=FontSize, Mode=TwoWay}"
+        BorderBrush="{Binding ElementName=uc, Path=BorderBrush, Mode=OneWay}"
+        BorderThickness="{Binding ElementName=uc, Path=BorderThickness, Mode=OneWay}"
+        Command="{Binding ElementName=uc, Path=Command, Mode=OneWay}"
+        CommandParameter="{Binding ElementName=uc, Path=CommandParameter, Mode=OneWay}"
+        FontSize="{Binding ElementName=uc, Path=FontSize, Mode=OneWay}"
         MouseEnter="MouseEnter"
         MouseLeave="MouseLeave">
         <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
             <local:FontIcon
                 x:Name="UCIcon"
-                Margin="{Binding ElementName=uc, Path=IconMargin, Mode=TwoWay}"
+                Margin="{Binding ElementName=uc, Path=IconMargin, Mode=OneWay}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Effect="{Binding ElementName=uc, Path=IconDropShadowEffect, Mode=TwoWay}"
-                FontSize="{Binding ElementName=uc, Path=IconSize, Mode=TwoWay}"
+                Effect="{Binding ElementName=uc, Path=IconDropShadowEffect, Mode=OneWay}"
+                FontSize="{Binding ElementName=uc, Path=IconSize, Mode=OneWay}"
                 Foreground="{Binding ElementName=uc, Path=IconForeground, Mode=OneWay}"
-                Icon="{Binding ElementName=uc, Path=Icon, Mode=TwoWay}" />
+                Icon="{Binding ElementName=uc, Path=Icon, Mode=OneWay}" />
             <StackPanel
                 Name="UCContent"
                 VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <Separator
                     Name="UCSeparator"
-                    Width="{Binding ElementName=uc, Path=SeparatorHeight, Mode=TwoWay}"
+                    Width="{Binding ElementName=uc, Path=SeparatorHeight, Mode=OneWay}"
                     Height=".6"
-                    Margin="{Binding ElementName=uc, Path=SeparatorMargin, Mode=TwoWay}"
+                    Margin="{Binding ElementName=uc, Path=SeparatorMargin, Mode=OneWay}"
                     Foreground="{Binding ElementName=uc, Path=SeparatorForeground, Mode=OneWay}"
-                    Visibility="{Binding ElementName=uc, Path=SeparatorVisibility, Mode=TwoWay}">
+                    Visibility="{Binding ElementName=uc, Path=SeparatorVisibility, Mode=OneWay}">
                     <Separator.LayoutTransform>
                         <RotateTransform Angle="90" />
                     </Separator.LayoutTransform>
@@ -69,18 +69,18 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock
-                        Margin="{Binding ElementName=uc, Path=TextMargin, Mode=TwoWay}"
+                        Margin="{Binding ElementName=uc, Path=TextMargin, Mode=OneWay}"
                         VerticalAlignment="Center"
-                        FontSize="{Binding ElementName=uc, Path=TextSize, Mode=TwoWay}"
-                        Foreground="{Binding ElementName=uc, Path=TextForeground, Mode=TwoWay}"
-                        Text="{Binding ElementName=uc, Path=Text, Mode=TwoWay}" />
+                        FontSize="{Binding ElementName=uc, Path=TextSize, Mode=OneWay}"
+                        Foreground="{Binding ElementName=uc, Path=TextForeground, Mode=OneWay}"
+                        Text="{Binding ElementName=uc, Path=Text, Mode=OneWay}" />
                     <TextBlock
                         Grid.Row="1"
-                        Margin="{Binding ElementName=uc, Path=DescriptionMargin, Mode=TwoWay}"
+                        Margin="{Binding ElementName=uc, Path=DescriptionMargin, Mode=OneWay}"
                         VerticalAlignment="Top"
-                        FontSize="{Binding ElementName=uc, Path=DescriptionSize, Mode=TwoWay}"
-                        Foreground="{Binding ElementName=uc, Path=DescriptionForeground, Mode=TwoWay}"
-                        Text="{Binding ElementName=uc, Path=Description, Mode=TwoWay}"
+                        FontSize="{Binding ElementName=uc, Path=DescriptionSize, Mode=OneWay}"
+                        Foreground="{Binding ElementName=uc, Path=DescriptionForeground, Mode=OneWay}"
+                        Text="{Binding ElementName=uc, Path=Description, Mode=OneWay}"
                         Visibility="{Binding ElementName=uc, Path=Description, Mode=OneWay, Converter={StaticResource StringToVisibilityConverter}}" />
                 </Grid>
             </StackPanel>
