@@ -15,7 +15,7 @@
   ```
   Instead, just write:
   ```csharp
-  Contract.StringNotNullOrWhiteSpace<Exception>(str);
+  Contract.StringFilled<Exception>(str);
   ```
   
   The same goes for null checks:
@@ -42,7 +42,7 @@
   
   ```csharp
   string str = "";
-  if (Check.StringNotNullOrWhiteSpace(str)) // false because str is empty
+  if (Check.StringFilled(str)) // false because str is empty
   ```   
   </li>
   
