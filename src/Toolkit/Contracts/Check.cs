@@ -1,4 +1,5 @@
 ﻿using System;
+using Toolkit.Sequences;
 
 namespace Toolkit.Contracts
 {
@@ -57,10 +58,7 @@ namespace Toolkit.Contracts
         /// The statement that the string is not empty and not null
         /// </summary>
         /// <param name="arg">Checked string</param>
-        public static bool StringNotNullOrWhiteSpace(in string arg)
-        {
-            return !string.IsNullOrWhiteSpace(arg?.Trim());
-        }
+        public static bool StringFilled(in string arg) => arg?.Filled() ?? false;
 
         #endregion
 

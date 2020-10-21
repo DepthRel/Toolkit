@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Toolkit.Sequences;
 
 namespace Toolkit.Contracts
 {
@@ -137,9 +138,9 @@ namespace Toolkit.Contracts
         /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
         /// <param name="arg">Checked string</param>
         /// <returns><strong>Original checked string</strong></returns>
-        public static string StringNotNullOrWhiteSpace<TEx>(in string arg) where TEx : Exception, new()
+        public static string StringFilled<TEx>(in string arg) where TEx : Exception, new()
         {
-            if (string.IsNullOrWhiteSpace(arg?.Trim()))
+            if (!arg?.Filled() ?? false)
             {
                 throw BuildException<TEx>();
             }
@@ -154,11 +155,12 @@ namespace Toolkit.Contracts
         /// <param name="arg">Checked string</param>
         /// <param name="message">Information for exception</param>
         /// <returns><strong>Original checked string</strong></returns>
-        public static string StringNotNullOrWhiteSpace<TEx>(in string arg, in string message) where TEx : Exception, new()
+        public static string StringFilled<TEx>(in string arg, in string message) where TEx : Exception, new()
         {
+            // If no message is specified, delegate the execution of the check to a method without a message for an exception
             if (string.IsNullOrWhiteSpace(message))
             {
-                return StringNotNullOrWhiteSpace<TEx>(arg);
+                return StringFilled<TEx>(arg);
             }
 
             if (string.IsNullOrWhiteSpace(arg?.Trim()))

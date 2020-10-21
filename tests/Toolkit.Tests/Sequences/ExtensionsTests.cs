@@ -77,5 +77,27 @@ namespace Toolkit.Tests.Sequences
             Assert.AreEqual(secondOld, first);
             Assert.AreEqual(firstOld, second);
         }
+
+        [TestMethod]
+        public void StringFilledTestCorrect()
+        {
+            string str = "Filled string";
+
+            Assert.AreEqual(true, str.Filled());
+        }
+
+        [TestMethod]
+        public void StringFilledWithNullIncorrectTestCorrect()
+        {
+            string str = null;
+            Assert.AreEqual(false, str.Filled());
+        }
+
+        [TestMethod]
+        public void StringFilledWithWhiteSpacesIncorrectTestCorrect()
+        {
+            string str = "    ";
+            Assert.AreEqual(false, str.Filled());
+        }
     }
 }

@@ -55,7 +55,7 @@ namespace Toolkit.Tests.Checks
         {
             string str = "string";
 
-            Assert.AreEqual(true, Check.StringNotNullOrWhiteSpace(str));
+            Assert.AreEqual(true, Check.StringFilled(str));
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace Toolkit.Tests.Checks
         {
             string str = "";
 
-            Assert.AreEqual(false, Check.StringNotNullOrWhiteSpace(str));
+            Assert.AreEqual(false, Check.StringFilled(str));
         }
     }
 }

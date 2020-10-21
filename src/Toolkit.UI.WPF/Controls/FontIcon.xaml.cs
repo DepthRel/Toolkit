@@ -41,7 +41,7 @@ namespace Toolkit.UI.WPF.Controls
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static string StringToIcon(string icon)
         {
-            Contract.StringNotNullOrWhiteSpace<ArgumentException>(icon, "Input string is not formatted correctly");
+            Contract.StringFilled<ArgumentException>(icon, "Input string is not formatted correctly");
 
             var isFind = Enum.TryParse<Icon>(icon, out var selectedIcon);
             var symbol = isFind ? Routing[selectedIcon] : Routing[Icon.StatusErrorFull];

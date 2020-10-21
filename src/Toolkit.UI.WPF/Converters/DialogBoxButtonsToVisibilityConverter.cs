@@ -12,7 +12,7 @@ namespace Toolkit.UI.WPF.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Contract.Is<InvalidCastException>((value as DialogBoxButtons?) != null);
-            var arg = Contract.StringNotNullOrWhiteSpace<InvalidCastException>((string)parameter);
+            var arg = Contract.StringFilled<InvalidCastException>((string)parameter);
 
             if (value is DialogBoxButtons button)
             {

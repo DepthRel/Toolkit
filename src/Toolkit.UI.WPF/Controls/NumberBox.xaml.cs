@@ -292,7 +292,7 @@ namespace Toolkit.UI.WPF.Controls
 
         private void TextBoxLoaded(object sender, RoutedEventArgs e)
         {
-            if (!Check.StringNotNullOrWhiteSpace(TextBoxControl.Text))
+            if (!Check.StringFilled(TextBoxControl.Text))
             {
                 IsPlaceholderActivated = true;
             }
@@ -350,7 +350,7 @@ namespace Toolkit.UI.WPF.Controls
             NumbersRange = new Range<int>(MinValue, MaxValue);
         }
 
-        private void PreviewKeyDown(object sender, KeyEventArgs e)
+        private new void PreviewKeyDown(object sender, KeyEventArgs e)
         {
             var keyCode = (int)e.Key;
 

@@ -195,7 +195,7 @@ namespace Toolkit.UI.WPF.Controls
 
         private void ControlLostFocus(object sender, RoutedEventArgs e)
         {
-            if (!Check.StringNotNullOrWhiteSpace(TextBoxControl.Text))
+            if (!Check.StringFilled(TextBoxControl.Text))
             {
                 IsPlaceholderActivated = true;
             }
@@ -203,7 +203,7 @@ namespace Toolkit.UI.WPF.Controls
 
         private void TextBoxLoaded(object sender, RoutedEventArgs e)
         {
-            if (!Check.StringNotNullOrWhiteSpace(TextBoxControl.Text))
+            if (!Check.StringFilled(TextBoxControl.Text))
             {
                 IsPlaceholderActivated = true;
             }

@@ -112,7 +112,7 @@ namespace Toolkit.Tests.Contracts
 
             try
             {
-                var originalCheckedString = Contract.StringNotNullOrWhiteSpace<ArgumentException>(str);
+                var originalCheckedString = Contract.StringFilled<ArgumentException>(str);
                 Assert.AreEqual(str, originalCheckedString);
             }
             catch (ArgumentException)
@@ -132,7 +132,7 @@ namespace Toolkit.Tests.Contracts
 
             try
             {
-                Contract.StringNotNullOrWhiteSpace<ArgumentException>(str);
+                Contract.StringFilled<ArgumentException>(str);
                 Assert.Fail($"{nameof(ArgumentException)} expected");
             }
             catch (ArgumentException)

@@ -144,7 +144,7 @@ namespace Toolkit
         /// <exception cref="FormatException"/>
         public void DeserializeFromJSON(in string value, in ReplacementStatus status)
         {
-            Contract.StringNotNullOrWhiteSpace<ArgumentException>(value);
+            Contract.StringFilled<ArgumentException>(value);
 
             if (JsonConvert.DeserializeObject<IDictionary<string, object>>(value) is IDictionary<string, object> loadedSettings)
             {
@@ -203,7 +203,7 @@ namespace Toolkit
             Contract.Is<AccessViolationException>(stream.CanWrite);
 
             string JSONString = SerializeToJSON();
-            if (Check.StringNotNullOrWhiteSpace(JSONString) && stream.CanWrite)
+            if (Check.StringFilled(JSONString) && stream.CanWrite)
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(JSONString);
                 stream.Write(bytes, checked((int)stream.Length), bytes.Length);
@@ -230,7 +230,7 @@ namespace Toolkit
         /// <exception cref="FormatException"/>
         public void DeserializeFromXML(in string value, in ReplacementStatus status)
         {
-            Contract.StringNotNullOrWhiteSpace<ArgumentException>(value);
+            Contract.StringFilled<ArgumentException>(value);
 
             ResolveCollisions(LoadXDocument(XDocument.Parse(value)), status);
         }
