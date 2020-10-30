@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Toolkit.Sequences;
 
 namespace Toolkit.Contracts
@@ -58,7 +59,31 @@ namespace Toolkit.Contracts
         /// The statement that the string is not empty and not null
         /// </summary>
         /// <param name="arg">Checked string</param>
+        /// <returns><strong>True if string is not null or white spaces</strong></returns>
         public static bool StringFilled(in string arg) => arg?.Filled() ?? false;
+
+        /// <summary>
+        /// The statement that the all strings are not empty and not null
+        /// </summary>
+        /// <param name="args">Checked strings</param>
+        /// <returns><strong>True if all strings are not null or white spaces</strong></returns>
+        public static bool StringFilled(params string[] args)
+        {
+            if (args != null && args.Any())
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if (!StringFilled(args[i]))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
 
         #endregion
 

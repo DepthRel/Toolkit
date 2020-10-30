@@ -51,7 +51,7 @@ namespace Toolkit.Tests.Checks
         }
 
         [TestMethod]
-        public void StringNotNullCorrect()
+        public void StringFilledCorrect()
         {
             string str = "string";
 
@@ -59,11 +59,29 @@ namespace Toolkit.Tests.Checks
         }
 
         [TestMethod]
-        public void StringNotNullInorrect()
+        public void StringFilledInorrect()
         {
             string str = "";
 
             Assert.AreEqual(false, Check.StringFilled(str));
+        }
+
+        [TestMethod]
+        public void StringsFilledCorrect()
+        {
+            string str1 = "string";
+            string str2 = " afas ";
+
+            Assert.AreEqual(true, Check.StringFilled(str1, str2));
+        }
+
+        [TestMethod]
+        public void StringsFilledInorrect()
+        {
+            string str1 = "string";
+            string str2 = null;
+
+            Assert.AreEqual(false, Check.StringFilled(str1, str2));
         }
     }
 }
