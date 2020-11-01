@@ -12,21 +12,6 @@ namespace Toolkit.Contracts
         #region Nullable Check
 
         /// <summary>
-        /// The statement that the parameters are not null
-        /// </summary>
-        /// <param name="args">Array of objects</param>
-        /// <returns><strong>True if all objects not null</strong></returns>
-        public static bool NotNull(params object[] args)
-        {
-            for (int i = 0; i < args.Length; i++)
-            {
-                if (args[i] == null) return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// The statement that the parameter is not null
         /// </summary>
         /// <typeparam name="T">Type descendant of class Object</typeparam>
@@ -107,22 +92,6 @@ namespace Toolkit.Contracts
                 {
                     throw BuildException<TEx>(message);
                 }
-            }
-
-            return args;
-        }
-
-        /// <summary>
-        /// The statement that the parameters are not null
-        /// </summary>
-        /// <typeparam name="TEx">Type of exception if the statement is incorrect. Inheritor of Exception class</typeparam>
-        /// <param name="args">Array of objects</param>
-        /// <returns><strong>Array of checked objects</strong></returns>
-        public static IEnumerable<object> NotNull<TEx>(params object[] args) where TEx : Exception, new()
-        {
-            if (!NotNull(args))
-            {
-                throw BuildException<TEx>();
             }
 
             return args;

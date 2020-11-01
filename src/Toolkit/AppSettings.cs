@@ -101,6 +101,12 @@ namespace Toolkit
             return null;
         }
 
+        /// <summary>
+        /// Retrieving settings value by text key.
+        /// </summary>
+        /// <typeparam name="T">The type of stored setting value</typeparam>
+        /// <param name="key">The key by which the setting value is stored</param>
+        /// <returns><strong>Setting's value or default for <typeparamref name="T"/> if no such setting is found.</strong></returns>
         public T TryGetSetting<T>(string key)
         {
             if (!string.IsNullOrWhiteSpace(key) && settings.TryGetValue(key, out var setting))
