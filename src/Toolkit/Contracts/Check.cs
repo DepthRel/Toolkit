@@ -5,7 +5,7 @@ using Toolkit.Sequences;
 namespace Toolkit.Contracts
 {
     /// <summary>
-    /// Verification of conditions. Unlike <see cref="Contract"/>, it does not cause an exception
+    /// Verification of conditions. Unlike <see cref="Contract"/>, it does not throw an exception
     /// </summary>
     public class Check
     {
@@ -33,7 +33,7 @@ namespace Toolkit.Contracts
         /// <param name="arg">Checked object</param>
         public static bool NotNull<T>(in T arg)
         {
-            return !(arg == null);
+            return arg != null;
         }
 
         /// <summary>

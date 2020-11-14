@@ -7,11 +7,12 @@
     <Product />
     <Company />
     <Description>.NET Toolkit include tools for comfortable dev</Description>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/DepthRel/Toolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DepthRel/Toolkit</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Version>1.6.3</Version>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageTags>csharp, check, contract, range, condition</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

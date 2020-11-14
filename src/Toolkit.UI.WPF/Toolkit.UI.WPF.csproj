@@ -8,6 +8,9 @@
     <Version>1.0.2.2</Version>
     <AssemblyVersion>1.0.2.2</AssemblyVersion>
     <FileVersion>1.0.2.2</FileVersion>
+    <PackageProjectUrl>https://github.com/DepthRel/Toolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DepthRel/Toolkit</RepositoryUrl>
+    <PackageTags>csharp, wpf, view, controls, icon, numberbox, placeholdertextbox, dialogbox</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
