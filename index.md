@@ -1,37 +1,137 @@
-## Welcome to GitHub Pages
+# Toolkit
+### .NET Toolkit is a tool for simplify the development of classes, business logic, UI elements, etc.
 
-You can use the [editor on GitHub](https://github.com/DepthRel/Toolkit/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## [Toolkit](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit)
+<ul>
+  <li>
+    
+  [Contracts](https://github.com/DepthRel/Toolkit/wiki/Contract) - a way to verify the transferred parameters in a concise way. Contracts are intended to replace the cumbersome constructions of condition checks, such as:
+  
+  ```csharp
+  if (string.IsNullOrWhiteSpace(str?.Trim()))
+  {
+      throw new Exception("The value is incorrect");
+  }
+  ```
+  Instead, just write:
+  ```csharp
+  Contract.StringFilled<Exception>(str);
+  ```
+  
+  The same goes for null checks:
+  ```csharp
+  Contract.NotNull<object, ArgumentNullException>(obj);
+  ```
+  
+  Logic checks:
+  ```csharp
+  Contract.MoreOrEqualThan<int, InvalidOperationException>(first, second);
+  ```
+  
+  </li>
+  
+  <li>
+  
+  [Check](https://github.com/DepthRel/Toolkit/wiki/Check) - a static class similar to the Contract class, but returns a Boolean value instead of throwing an exception.
+  
+  ```csharp
+  if (Check.NotNull<object>(obj)) // true if obj isn't null
+  ```  
+  
+  String checks:
+  
+  ```csharp
+  string str = "";
+  if (Check.StringFilled(str)) // false because str is empty
+  ```   
+  </li>
+  
+  <li>
+  
+  [Condition](https://github.com/DepthRel/Toolkit/wiki/Condition) - allows you to build a chain of logical conditions.
+  
+  ```csharp
+  int a = 10;
+  int b = 20;
+  var result = Condition
+               .Check(a == 10)
+               .And(b == 20);
+               .Or(b == 5)
+               .Not() // now it's false
+  ```
+  </li>
+  
+  <li>
+  And others...
+  </li>
+</ul>
+  
+  ## [Toolkit.Components](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit.Components)
+  
+<ul>
+  
+  <li>
+  
+  [BaseViewModel](https://github.com/DepthRel/Toolkit/wiki/BaseViewModel) contains an implementation of the `INotifyPropertyChanged` interface with the `OnPropertyChanged()` method to notify observers about a change in the value of the observed object.
+  
+  The generic `SetProperty` method is designed to assign values to observable objects and notify about their change.
+  </li>
+  
+  <li>
+  
+  [IMessage](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.Components/Notifications/IMessage.cs) is an interface for solving the problem of calling a dialog from a ViewModel without interacting with the View layer.
+  
+  ```csharp
+  // View layer
+  public class Message : IMessage
+  {
+      public void Report() { MessageBox.Show("Message for user" );
+  }
+  
+  public MainWindow()
+  {
+      DataContext = new ViewModel(new Message());
+  }
+  
+  // ViewModel layer
+  class ViewModel
+  {
+      public ViewModel(IMessage message)
+      {
+          message.Report();
+      }
+  }
+  ```
+  </li>
+  
+  <li>
+  And others...
+  </li>
+</ul>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  ## [Toolkit.UI.WPF](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit.UI.WPF)
+  
+<ul>
+  
+  <li>
+  
+  [PlaceholderTextBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/PlaceholderTextBox.xaml.cs), [NumberBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/NumberBox.xaml.cs), [CompactButton](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/CompactButton.xaml.cs), [FontIcon](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/FontIcon.xaml.cs)
+  
+  ![Controls](https://i.ibb.co/whQZ5VP/image.png)
+  
+  </li>
+  
+  <li>
+  
+  [DialogBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/DialogBox.xaml.cs)
+  
+  ![DialogBox](https://i.ibb.co/JdS6s5X/image.png)
+  
+  <li>
+  And others...
+  </li>
+</ul>
 
-### Markdown
+### See [wiki](https://github.com/DepthRel/Toolkit/wiki) for more details.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DepthRel/Toolkit/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+###### [DepthRel](https://github.com/DepthRel), 2020
