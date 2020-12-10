@@ -1,357 +1,321 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Toolkit.Contracts;
+using Xunit;
 
 namespace Toolkit.Tests.Contracts
 {
-    [TestClass]
     public class EqualsContractTests
     {
-        [TestMethod]
-        public void EqualCorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void EqualCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
             try
             {
                 Contract.Equal<int, InvalidOperationException>(first, second);
-                Assert.AreEqual(0, 0);
+                Assert.Equal(0, 0);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void EqualIncorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void EqualIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
             try
             {
                 Contract.Equal<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void NotEqualCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void NotEqualCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
             try
             {
                 Contract.NotEqual<int, InvalidOperationException>(first, second);
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void NotEqualIncorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void NotEqualIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
             try
             {
                 Contract.NotEqual<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void MoreOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        [InlineData(5, 0)]
+        public void MoreOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-            int third = 0;
-
             try
             {
                 Contract.MoreOrEqualThan<int, InvalidOperationException>(first, second);
-                Contract.MoreOrEqualThan<int, InvalidOperationException>(first, third);
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void MoreOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void MoreOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
             try
             {
                 Contract.MoreOrEqualThan<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void MoreThanCorrect()
+        [Theory]
+        [InlineData(5, 0)]
+        public void MoreThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 0;
-
             try
             {
                 Contract.MoreThan<int, InvalidOperationException>(first, second);
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void MoreThanIncorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void MoreThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
             try
             {
                 Contract.MoreThan<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void NotMoreOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void NotMoreOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
             try
             {
                 Contract.NotMoreOrEqualThan<int, InvalidOperationException>(first, second);
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void NotMoreOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, 0)]
+        public void NotMoreOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 0;
-
             try
             {
                 Contract.NotMoreOrEqualThan<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void LessOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        [InlineData(5, 10)]
+        public void LessOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-            int third = 10;
-
             try
             {
                 Contract.LessOrEqualThan<int, InvalidOperationException>(first, second);
-                Contract.LessOrEqualThan<int, InvalidOperationException>(first, third);
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void LessOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, -5)]
+        public void LessOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = -5;
-
             try
             {
                 Contract.LessOrEqualThan<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void LessThanCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void LessThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
             try
             {
                 Contract.LessThan<int, InvalidOperationException>(first, second);
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void LessThanIncorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void LessThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
             try
             {
                 Contract.LessThan<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void NotLessOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 0)]
+        public void NotLessOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 0;
-
             try
             {
                 Contract.NotLessOrEqualThan<int, InvalidOperationException>(first, second);
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void NotLessOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void NotLessOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
             try
             {
                 Contract.NotLessOrEqualThan<int, InvalidOperationException>(first, second);
-                Assert.Fail($"{nameof(InvalidOperationException)} expected");
+                Assert.False(true, $"{nameof(InvalidOperationException)} expected");
             }
             catch (InvalidOperationException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void IsCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void IsCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
             string str = "string";
 
             try
@@ -363,23 +327,22 @@ namespace Toolkit.Tests.Contracts
                 Contract.Is<InvalidOperationException>(str != null);
                 Contract.Is<InvalidOperationException>(str == "string");
 
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
 
-        [TestMethod]
-        public void IsNotCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void IsNotCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
             string str = "string";
 
             try
@@ -391,15 +354,15 @@ namespace Toolkit.Tests.Contracts
                 Contract.IsNot<InvalidOperationException>(str == null);
                 Contract.IsNot<InvalidOperationException>(str != "string");
 
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (InvalidOperationException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(InvalidOperationException)}");
             }
         }
     }

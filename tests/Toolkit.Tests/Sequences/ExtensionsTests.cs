@@ -1,54 +1,53 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Toolkit.Sequences;
+﻿using Toolkit.Sequences;
 using System.Collections.Generic;
 using System.Linq;
+using Xunit;
 
 namespace Toolkit.Tests.Sequences
 {
-    [TestClass]
     public class ExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void ReorderTestCorrect()
         {
             var list = new List<int>() { 1, 2, 3, 4, 5 };
             var reorderedList = Extensions.Reorder(list).ToList();
 
-            Assert.AreEqual(list.Count, reorderedList.Count);
+            Assert.Equal(list.Count, reorderedList.Count);
 
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] != reorderedList[i])
                 {
-                    Assert.AreEqual(0, 0);
+                    Assert.True(true);
                     return;
                 }
             }
 
-            Assert.Fail();
+            Assert.False(true);
         }
 
-        [TestMethod]
+        [Fact]
         public void ReorderExtensionTestCorrect()
         {
             var list = new List<int>() { 1, 2, 3, 4, 5 };
             var reorderedList = list.Reorder().ToList();
 
-            Assert.AreEqual(list.Count, reorderedList.Count);
+            Assert.Equal(list.Count, reorderedList.Count);
 
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] != reorderedList[i])
                 {
-                    Assert.AreEqual(0, 0);
+                    Assert.True(true);
                     return;
                 }
             }
 
-            Assert.Fail();
+            Assert.False(true);
         }
 
-        [TestMethod]
+        [Fact]
         public void SwapExtensionWithIntValuesTestCorrect()
         {
             int first = 1;
@@ -59,11 +58,11 @@ namespace Toolkit.Tests.Sequences
 
             Extensions.Swap(ref first, ref second);
 
-            Assert.AreEqual(secondOld, first);
-            Assert.AreEqual(firstOld, second);
+            Assert.Equal(secondOld, first);
+            Assert.Equal(firstOld, second);
         }
 
-        [TestMethod]
+        [Fact]
         public void SwapExtensionWithStringValuesTestCorrect()
         {
             string first = "1";
@@ -74,30 +73,23 @@ namespace Toolkit.Tests.Sequences
 
             Extensions.Swap(ref first, ref second);
 
-            Assert.AreEqual(secondOld, first);
-            Assert.AreEqual(firstOld, second);
+            Assert.Equal(secondOld, first);
+            Assert.Equal(firstOld, second);
         }
 
-        [TestMethod]
-        public void StringFilledTestCorrect()
+        [Theory]
+        [InlineData("Filled string")]
+        public void StringFilledTestCorrect(string line)
         {
-            string str = "Filled string";
-
-            Assert.AreEqual(true, str.Filled());
+            Assert.True(line.Filled());
         }
 
-        [TestMethod]
-        public void StringFilledWithNullIncorrectTestCorrect()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("    ")]
+        public void StringFilledWithNullOrWhiteSpacesIncorrectTestCorrect(string line)
         {
-            string str = null;
-            Assert.AreEqual(false, str.Filled());
-        }
-
-        [TestMethod]
-        public void StringFilledWithWhiteSpacesIncorrectTestCorrect()
-        {
-            string str = "    ";
-            Assert.AreEqual(false, str.Filled());
+            Assert.False(line.Filled());
         }
     }
 }

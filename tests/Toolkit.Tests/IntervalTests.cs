@@ -1,178 +1,133 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace Toolkit.Tests
 {
-    [TestClass]
     public class IntervalTests
     {
-        [TestMethod]
-        public void InitializeCorrect()
+        [Theory]
+        [InlineData(10, 1)]
+        public void InitializeCorrect(in int first, in int second)
         {
-            var interval = new Range<int>(10, 1);
+            var interval = new Range<int>(first, second);
 
-            Assert.AreEqual(1, interval.Left);
-            Assert.AreEqual(10, interval.Right);
+            Assert.Equal(second, interval.Left);
+            Assert.Equal(first, interval.Right);
         }
 
-        [TestMethod]
-        public void InsideCorrect()
-        {
-            var interval = new Range<int>(1, 10);
-            bool result;
-
-            result = interval.Inside(-1);
-            Assert.AreEqual(false, result);
-
-            result = interval.Inside(1);
-            Assert.AreEqual(true, result);
-
-            result = interval.Inside(5);
-            Assert.AreEqual(true, result);
-
-            result = interval.Inside(10);
-            Assert.AreEqual(true, result);
-
-            result = interval.Inside(12);
-            Assert.AreEqual(false, result);
-        }
-
-        [TestMethod]
-        public void BetweenCorrect()
+        [Theory]
+        [InlineData(-1, false)]
+        [InlineData(1, true)]
+        [InlineData(5, true)]
+        [InlineData(10, true)]
+        [InlineData(12, false)]
+        public void InsideCorrect(in int value, in bool result)
         {
             var interval = new Range<int>(1, 10);
-            bool result;
 
-            result = interval.Between(-1);
-            Assert.AreEqual(false, result);
-
-            result = interval.Between(1);
-            Assert.AreEqual(false, result);
-
-            result = interval.Between(5);
-            Assert.AreEqual(true, result);
-
-            result = interval.Between(10);
-            Assert.AreEqual(false, result);
-
-            result = interval.Between(12);
-            Assert.AreEqual(false, result);
+            Assert.Equal(result, interval.Inside(value));
         }
 
-        [TestMethod]
-        public void OutsideCorrect()
+        [Theory]
+        [InlineData(-1, false)]
+        [InlineData(1, false)]
+        [InlineData(5, true)]
+        [InlineData(10, false)]
+        [InlineData(12, false)]
+        public void BetweenCorrect(in int value, in bool result)
         {
             var interval = new Range<int>(1, 10);
-            bool result;
 
-            result = interval.Outside(-1);
-            Assert.AreEqual(true, result);
-
-            result = interval.Outside(1);
-            Assert.AreEqual(false, result);
-
-            result = interval.Outside(5);
-            Assert.AreEqual(false, result);
-
-            result = interval.Outside(10);
-            Assert.AreEqual(false, result);
-
-            result = interval.Outside(12);
-            Assert.AreEqual(true, result);
+            Assert.Equal(result, interval.Between(value));
         }
 
-        [TestMethod]
-        public void BeyondCorrect()
+        [Theory]
+        [InlineData(-1, true)]
+        [InlineData(1, false)]
+        [InlineData(5, false)]
+        [InlineData(10, false)]
+        [InlineData(12, true)]
+        public void OutsideCorrect(in int value, in bool result)
         {
             var interval = new Range<int>(1, 10);
-            bool result;
 
-            result = interval.Beyond(-1);
-            Assert.AreEqual(false, result);
-
-            result = interval.Beyond(1);
-            Assert.AreEqual(false, result);
-
-            result = interval.Beyond(5);
-            Assert.AreEqual(false, result);
-
-            result = interval.Beyond(10);
-            Assert.AreEqual(false, result);
-
-            result = interval.Beyond(12);
-            Assert.AreEqual(true, result);
+            Assert.Equal(result, interval.Outside(value));
         }
 
-        [TestMethod]
-        public void BeforeCorrect()
+        [Theory]
+        [InlineData(-1, false)]
+        [InlineData(1, false)]
+        [InlineData(5, false)]
+        [InlineData(10, false)]
+        [InlineData(12, true)]
+        public void BeyondCorrect(in int value, in bool result)
         {
             var interval = new Range<int>(1, 10);
-            bool result;
 
-            result = interval.Before(-1);
-            Assert.AreEqual(true, result);
-
-            result = interval.Before(1);
-            Assert.AreEqual(false, result);
-
-            result = interval.Before(5);
-            Assert.AreEqual(false, result);
-
-            result = interval.Before(10);
-            Assert.AreEqual(false, result);
-
-            result = interval.Before(12);
-            Assert.AreEqual(false, result);
+            Assert.Equal(result, interval.Beyond(value));
         }
 
-        [TestMethod]
+        [Theory]
+        [InlineData(-1, true)]
+        [InlineData(1, false)]
+        [InlineData(5, false)]
+        [InlineData(10, false)]
+        [InlineData(12, false)]
+        public void BeforeCorrect(in int value, in bool result)
+        {
+            var interval = new Range<int>(1, 10);
+
+            Assert.Equal(result, interval.Before(value));
+        }
+
+        [Fact]
         public void EqualsCorrect()
         {
             var firstInterval = new Range<int>(1, 10);
             var secondInterval = new Range<int>(1, 10);
 
-            Assert.AreEqual(true, firstInterval.Equals(secondInterval));
-            Assert.AreEqual(true, firstInterval == secondInterval);
-            Assert.AreEqual(false, firstInterval != secondInterval);
+            Assert.True(firstInterval.Equals(secondInterval));
+            Assert.True(firstInterval == secondInterval);
+            Assert.False(firstInterval != secondInterval);
         }
 
-        [TestMethod]
+        [Fact]
         public void EqualsWithNullCorrect()
         {
             Range<int> firstInterval = new Range<int>(1, 10);
             Range<int> secondInterval = null;
 
-            Assert.AreEqual(false, firstInterval.Equals(secondInterval));
-            Assert.AreEqual(false, firstInterval == secondInterval);
-            Assert.AreEqual(true, firstInterval != secondInterval);
+            Assert.False(firstInterval.Equals(secondInterval));
+            Assert.False(firstInterval == secondInterval);
+            Assert.True(firstInterval != secondInterval);
         }
 
-        [TestMethod]
+        [Fact]
         public void NotEqualsCorrect()
         {
             var firstInterval = new Range<int>(1, 10);
             var secondInterval = new Range<int>(-1, 10);
 
-            Assert.AreEqual(false, firstInterval.Equals(secondInterval));
-            Assert.AreEqual(false, firstInterval == secondInterval);
-            Assert.AreEqual(true, firstInterval != secondInterval);
+            Assert.False(firstInterval.Equals(secondInterval));
+            Assert.False(firstInterval == secondInterval);
+            Assert.True(firstInterval != secondInterval);
         }
 
-        [TestMethod]
+        [Fact]
         public void EqualsHashCodeCorrect()
         {
             var firstInterval = new Range<int>(1, 10);
             var secondInterval = new Range<int>(1, 10);
 
-            Assert.AreEqual(true, firstInterval.GetHashCode() == secondInterval.GetHashCode());
+            Assert.True(firstInterval.GetHashCode() == secondInterval.GetHashCode());
         }
 
-        [TestMethod]
+        [Fact]
         public void NotEqualsHashCodeCorrect()
         {
             var firstInterval = new Range<int>(1, 10);
             var secondInterval = new Range<int>(-1, 10);
 
-            Assert.AreEqual(false, firstInterval.GetHashCode() == secondInterval.GetHashCode());
+            Assert.False(firstInterval.GetHashCode() == secondInterval.GetHashCode());
         }
     }
 }

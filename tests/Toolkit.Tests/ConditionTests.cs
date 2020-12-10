@@ -1,140 +1,127 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Toolkit.Tests
 {
-    [TestClass]
     public class ConditionTests
     {
-        [TestMethod]
-        public void CheckTrueCorrect()
+        [Theory]
+        [InlineData(10)]
+        public void CheckTrueCorrect(int value)
         {
-            int a = 10;
-            var result = Condition.Check(a == 10);
-
-            Assert.AreEqual(true, result);
+            Assert.True(Condition.Check(value == 10));
         }
 
-        [TestMethod]
-        public void CheckFalseCorrect()
+        [Theory]
+        [InlineData(20)]
+        public void CheckFalseCorrect(int value)
         {
-            int a = 20;
-            var result = Condition.Check(a == 10);
-
-            Assert.AreEqual(false, result);
+            Assert.False(Condition.Check(value == 10));
         }
 
-        [TestMethod]
-        public void AndChainTrueCorrect()
+        [Theory]
+        [InlineData(10, 20)]
+        public void AndChainTrueCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 20;
             var result = Condition
-                .Check(a == 10)
-                .And(b == 20);
+                .Check(first == 10)
+                .And(second == 20);
 
-            Assert.AreEqual(true, result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void AndChainFalseCorrect()
+        [Theory]
+        [InlineData(10, 30)]
+        public void AndChainFalseCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 30;
             var result = Condition
-                .Check(a == 10)
-                .And(b == 20);
+                .Check(first == 10)
+                .And(second == 20);
 
-            Assert.AreEqual(false, result);
+            Assert.False(result);
         }
 
-        [TestMethod]
-        public void OrChainTrueCorrect()
+        [Theory]
+        [InlineData(10, 20)]
+        public void OrChainTrueCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 20;
             var result = Condition
-                .Check(a == 10)
-                .Or(b == 20);
+                .Check(first == 10)
+                .Or(second == 20);
 
-            Assert.AreEqual(true, result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void OrChainFalseCorrect()
+        [Theory]
+        [InlineData(10, 30)]
+        public void OrChainFalseCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 30;
             var result = Condition
-                .Check(a == 10)
-                .Or(b == 20);
+                .Check(first == 10)
+                .Or(second == 20);
 
-            Assert.AreEqual(true, result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void AndNotChainTrueCorrect()
+        [Theory]
+        [InlineData(10, 20)]
+        public void AndNotChainTrueCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 20;
             var result = Condition
-                .Check(a == 10)
-                .AndNot(b == 20);
+                .Check(first == 10)
+                .AndNot(second == 20);
 
-            Assert.AreEqual(false, result);
+            Assert.False(result);
         }
 
-        [TestMethod]
-        public void AndNotChainFalseCorrect()
+        [Theory]
+        [InlineData(10, 30)]
+        public void AndNotChainFalseCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 30;
             var result = Condition
-                .Check(a == 10)
-                .AndNot(b == 20);
+                .Check(first == 10)
+                .AndNot(second == 20);
 
-            Assert.AreEqual(true, result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void OrNotChainTrueCorrect()
+        [Theory]
+        [InlineData(10, 20)]
+        public void OrNotChainTrueCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 20;
             var result = Condition
-                .Check(a == 10)
-                .OrNot(b == 20);
+                .Check(first == 10)
+                .OrNot(second == 20);
 
-            Assert.AreEqual(true, result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void OrNotChainFalseCorrect()
+        [Theory]
+        [InlineData(10, 30)]
+        public void OrNotChainFalseCorrect(int first, int second)
         {
-            int a = 10;
-            int b = 30;
             var result = Condition
-                .Check(a == 10)
-                .OrNot(b == 20);
+                .Check(first == 10)
+                .OrNot(second == 20);
 
-            Assert.AreEqual(true, result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void NotChainTrueCorrect()
+        [Theory]
+        [InlineData(10)]
+        public void NotChainTrueCorrect(int value)
         {
-            int a = 10;
-            var result = Condition.Check(a != 10).Not();
+            var result = Condition.Check(value != 10).Not();
 
-            Assert.AreEqual(true, result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void NotChainFalseCorrect()
+        [Theory]
+        [InlineData(10)]
+        public void NotChainFalseCorrect(int value)
         {
-            int a = 10;
-            var result = Condition.Check(a == 10).Not();
+            var result = Condition.Check(value == 10).Not();
 
-            Assert.AreEqual(false, result);
+            Assert.False(result);
         }
     }
 }

@@ -1,14 +1,13 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 using Toolkit.Contracts;
+using Xunit;
 
 namespace Toolkit.Tests.Contracts
 {
-    [TestClass]
     public class NullContractTests
     {
-        [TestMethod]
+        [Fact]
         public void ObjectNotNullCorrect()
         {
             object obj = new object();
@@ -16,19 +15,19 @@ namespace Toolkit.Tests.Contracts
             try
             {
                 var originalCheckedObject = Contract.NotNull<object, ArgumentNullException>(obj);
-                Assert.IsTrue(ReferenceEquals(obj, originalCheckedObject));
+                Assert.True(ReferenceEquals(obj, originalCheckedObject));
             }
             catch (ArgumentException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void ObjectNotNullInorrect()
         {
             object obj = null;
@@ -36,19 +35,19 @@ namespace Toolkit.Tests.Contracts
             try
             {
                 Contract.NotNull<object, ArgumentNullException>(obj);
-                Assert.Fail($"{nameof(ArgumentNullException)} expected");
+                Assert.False(true, $"{nameof(ArgumentNullException)} expected");
             }
             catch (ArgumentNullException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void ObjectsNotNullCorrect()
         {
             object[] objs = new object[]
@@ -62,24 +61,24 @@ namespace Toolkit.Tests.Contracts
             try
             {
                 var originalCheckedArray = Contract.NotNull<object, ArgumentNullException>(objs).ToArray();
-                Assert.AreEqual(objs.Length, originalCheckedArray.Length);
+                Assert.Equal(objs.Length, originalCheckedArray.Length);
 
                 for (int i = 0; i < objs.Length; i++)
                 {
-                    Assert.IsTrue(ReferenceEquals(objs[i], originalCheckedArray[i]));
+                    Assert.True(ReferenceEquals(objs[i], originalCheckedArray[i]));
                 }
             }
             catch (ArgumentNullException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void ObjectsNotNullInorrect()
         {
             object[] objs = new object[]
@@ -93,19 +92,19 @@ namespace Toolkit.Tests.Contracts
             try
             {
                 Contract.NotNull<object, ArgumentNullException>(objs);
-                Assert.Fail($"{nameof(ArgumentNullException)} expected");
+                Assert.False(true, $"{nameof(ArgumentNullException)} expected");
             }
             catch (ArgumentNullException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void StringNotNullCorrect()
         {
             string str = "string";
@@ -113,19 +112,19 @@ namespace Toolkit.Tests.Contracts
             try
             {
                 var originalCheckedString = Contract.StringFilled<ArgumentException>(str);
-                Assert.AreEqual(str, originalCheckedString);
+                Assert.Equal(str, originalCheckedString);
             }
             catch (ArgumentException)
             {
-                Assert.Fail();
+                Assert.False(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void StringNotNullInorrect()
         {
             string str = "";
@@ -133,15 +132,15 @@ namespace Toolkit.Tests.Contracts
             try
             {
                 Contract.StringFilled<ArgumentException>(str);
-                Assert.Fail($"{nameof(ArgumentException)} expected");
+                Assert.False(true, $"{nameof(ArgumentException)} expected");
             }
             catch (ArgumentException)
             {
-                Assert.AreEqual(0, 0);
+                Assert.True(true);
             }
             catch (Exception ex)
             {
-                Assert.Fail($"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
+                Assert.False(true, $"An {ex.GetType()} has occurred. Expected {nameof(ArgumentNullException)}");
             }
         }
     }

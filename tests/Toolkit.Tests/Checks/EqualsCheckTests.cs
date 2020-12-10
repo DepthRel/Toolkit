@@ -1,157 +1,122 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toolkit.Contracts;
+using Xunit;
 
 namespace Toolkit.Tests.Checks
 {
-    [TestClass]
     public class EqualsCheckTests
     {
-        [TestMethod]
-        public void EqualCorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void EqualCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
-            Assert.AreEqual(true, Check.Equal(first, second));
+            Assert.True(Check.Equal(first, second));
         }
 
-        [TestMethod]
-        public void EqualIncorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void EqualIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
-            Assert.AreEqual(false, Check.Equal(first, second));
+            Assert.False(Check.Equal(first, second));
         }
 
-        [TestMethod]
-        public void NotEqualCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void NotEqualCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
-            Assert.AreEqual(true, Check.NotEqual(first, second));
+            Assert.True(Check.NotEqual(first, second));
         }
 
-        [TestMethod]
-        public void NotEqualIncorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void NotEqualIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
-            Assert.AreEqual(false, Check.NotEqual(first, second));
+            Assert.False(Check.NotEqual(first, second));
         }
 
-        [TestMethod]
-        public void MoreOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        [InlineData(5, 0)]
+        public void MoreOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-            int third = 0;
-
-            Assert.AreEqual(true, Check.MoreOrEqualThan(first, second));
-            Assert.AreEqual(true, Check.MoreOrEqualThan(first, third));
+            Assert.True(Check.MoreOrEqualThan(first, second));
         }
 
-        [TestMethod]
-        public void MoreOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void MoreOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
-            Assert.AreEqual(false, Check.MoreOrEqualThan(first, second));
+            Assert.False(Check.MoreOrEqualThan(first, second));
         }
 
-        [TestMethod]
-        public void MoreThanCorrect()
+        [Theory]
+        [InlineData(5, 0)]
+        public void MoreThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 0;
-
-            Assert.AreEqual(true, Check.MoreThan(first, second));
+            Assert.True(Check.MoreThan(first, second));
         }
 
-        [TestMethod]
-        public void MoreThanIncorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void MoreThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
-            Assert.AreEqual(false, Check.MoreThan(first, second));
+            Assert.False(Check.MoreThan(first, second));
         }
 
-        [TestMethod]
-        public void NotMoreOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void NotMoreOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
-            Assert.AreEqual(true, Check.NotMoreOrEqualThan(first, second));
+            Assert.True(Check.NotMoreOrEqualThan(first, second));
         }
 
-        [TestMethod]
-        public void NotMoreOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, 0)]
+        public void NotMoreOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 0;
-
-            Assert.AreEqual(false, Check.NotMoreOrEqualThan(first, second));
+            Assert.False(Check.NotMoreOrEqualThan(first, second));
         }
 
-        [TestMethod]
-        public void LessOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        [InlineData(5, 10)]
+        public void LessOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-            int third = 10;
-
-            Assert.AreEqual(true, Check.LessOrEqualThan(first, second));
-            Assert.AreEqual(true, Check.LessOrEqualThan(first, third));
+            Assert.True(Check.LessOrEqualThan(first, second));
         }
 
-        [TestMethod]
-        public void LessOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, -5)]
+        public void LessOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = -5;
-
-            Assert.AreEqual(false, Check.LessOrEqualThan(first, second));
+            Assert.False(Check.LessOrEqualThan(first, second));
         }
 
-        [TestMethod]
-        public void LessThanCorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void LessThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
-            Assert.AreEqual(true, Check.LessThan(first, second));
+            Assert.True(Check.LessThan(first, second));
         }
 
-        [TestMethod]
-        public void LessThanIncorrect()
+        [Theory]
+        [InlineData(5, 5)]
+        public void LessThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 5;
-
-            Assert.AreEqual(false, Check.LessThan(first, second));
+            Assert.False(Check.LessThan(first, second));
         }
 
-        [TestMethod]
-        public void NotLessOrEqualThanCorrect()
+        [Theory]
+        [InlineData(5, 0)]
+        public void NotLessOrEqualThanCorrect(int first, int second)
         {
-            int first = 5;
-            int second = 0;
-
-            Assert.AreEqual(true, Check.NotLessOrEqualThan(first, second));
+            Assert.True(Check.NotLessOrEqualThan(first, second));
         }
 
-        [TestMethod]
-        public void NotLessOrEqualThanIncorrect()
+        [Theory]
+        [InlineData(5, 10)]
+        public void NotLessOrEqualThanIncorrect(int first, int second)
         {
-            int first = 5;
-            int second = 10;
-
-            Assert.AreEqual(false, Check.NotLessOrEqualThan(first, second));
+            Assert.False(Check.NotLessOrEqualThan(first, second));
         }
     }
 }

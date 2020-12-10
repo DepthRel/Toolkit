@@ -1,15 +1,14 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Toolkit.Components.ViewModels;
+using Xunit;
 
 namespace Toolkit.Tests.ViewModels
 {
-    [TestClass]
     public class RelayCommandTests
     {
-        [TestMethod]
+        [Fact]
         public void InvokeCommandCorrect()
         {
             IList<string> list = new List<string>();
@@ -21,11 +20,11 @@ namespace Toolkit.Tests.ViewModels
 
             command.Execute("string");
 
-            Assert.AreEqual(list.Count, 1);
-            Assert.AreEqual(list.First(), "string");
+            Assert.Single(list);
+            Assert.Equal("string", list.First());
         }
 
-        [TestMethod]
+        [Fact]
         public void InvokeGenericCommandCorrect()
         {
             IList<string> list = new List<string>();
@@ -37,8 +36,8 @@ namespace Toolkit.Tests.ViewModels
 
             command.Execute("string");
 
-            Assert.AreEqual(list.Count, 1);
-            Assert.AreEqual(list.First(), "string");
+            Assert.Single(list);
+            Assert.Equal("string", list.First());
         }
     }
 }

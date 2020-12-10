@@ -1,28 +1,27 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toolkit.Contracts;
+using Xunit;
 
 namespace Toolkit.Tests.Checks
 {
-    [TestClass]
     public class NullCheckTests
     {
-        [TestMethod]
+        [Fact]
         public void ObjectNotNullCorrect()
         {
             object obj = new object();
 
-            Assert.AreEqual(true, Check.NotNull<object>(obj));
+            Assert.True(Check.NotNull<object>(obj));
         }
 
-        [TestMethod]
+        [Fact]
         public void ObjectNotNullInorrect()
         {
             object obj = null;
 
-            Assert.AreEqual(false, Check.NotNull<object>(obj));
+            Assert.False(Check.NotNull<object>(obj));
         }
 
-        [TestMethod]
+        [Fact]
         public void ObjectsNotNullCorrect()
         {
             object[] objs = new object[]
@@ -33,10 +32,10 @@ namespace Toolkit.Tests.Checks
                 new object()
             };
 
-            Assert.AreEqual(true, Check.NotNull<object>(objs));
+            Assert.True(Check.NotNull<object>(objs));
         }
 
-        [TestMethod]
+        [Fact]
         public void ObjectsNotNullInorrect()
         {
             object[] objs = new object[]
@@ -47,41 +46,37 @@ namespace Toolkit.Tests.Checks
                 new object()
             };
 
-            Assert.AreEqual(false, Check.NotNull<object>(objs));
+            Assert.False(Check.NotNull<object>(objs));
         }
 
-        [TestMethod]
+        [Fact]
         public void StringFilledCorrect()
         {
             string str = "string";
 
-            Assert.AreEqual(true, Check.StringFilled(str));
+            Assert.True(Check.StringFilled(str));
         }
 
-        [TestMethod]
-        public void StringFilledInorrect()
+        [Theory]
+        [InlineData("")]
+        public void StringFilledInorrect(string line)
         {
-            string str = "";
-
-            Assert.AreEqual(false, Check.StringFilled(str));
+            Assert.False(Check.StringFilled(line));
         }
 
-        [TestMethod]
-        public void StringsFilledCorrect()
+        [Theory]
+        [InlineData("string", " afas ")]
+        public void StringsFilledCorrect(string str1, string str2)
         {
-            string str1 = "string";
-            string str2 = " afas ";
-
-            Assert.AreEqual(true, Check.StringFilled(str1, str2));
+            Assert.True(Check.StringFilled(str1, str2));
         }
 
-        [TestMethod]
-        public void StringsFilledInorrect()
+        [Theory]
+        [InlineData("string", null)]
+        [InlineData(null, "string")]
+        public void StringsFilledInorrect(string str1, string str2)
         {
-            string str1 = "string";
-            string str2 = null;
-
-            Assert.AreEqual(false, Check.StringFilled(str1, str2));
+            Assert.False(Check.StringFilled(str1, str2));
         }
     }
 }

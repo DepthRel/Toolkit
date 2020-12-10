@@ -2,24 +2,23 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Toolkit.Tests
 {
-    [TestClass]
     public class AppSettingsTests
     {
-        [TestMethod]
+        [Fact]
         public void WriteAndReadSettingCorrect()
         {
             string name = "Dev";
             AppSettings.Setting["name"] = name;
 
-            Assert.AreEqual(name, AppSettings.Setting["name"]);
+            Assert.Equal(name, AppSettings.Setting["name"]);
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void DoubleWriteSettingCorrect()
         {
             string name = "Dev";
@@ -27,11 +26,11 @@ namespace Toolkit.Tests
             AppSettings.Setting["name"] = temp;
             AppSettings.Setting["name"] = name;
 
-            Assert.AreEqual(name, AppSettings.Setting["name"]);
+            Assert.Equal(name, AppSettings.Setting["name"]);
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void RemoveSettingCorrect()
         {
             string name = "Dev";
@@ -39,34 +38,34 @@ namespace Toolkit.Tests
 
             AppSettings.Setting.RemoveSetting(name);
 
-            Assert.AreEqual(null, AppSettings.Setting.TryGetSetting(name));
+            Assert.Null(AppSettings.Setting.TryGetSetting(name));
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void TryGetSettingCorrect()
         {
             string name = "Dev";
             AppSettings.Setting["name"] = name;
 
-            Assert.AreEqual(name, AppSettings.Setting.TryGetSetting("name"));
+            Assert.Equal(name, AppSettings.Setting.TryGetSetting("name"));
             ClearAllSettings();
 
             double value = 3.14;
             AppSettings.Setting["name"] = value;
 
-            Assert.AreEqual(value, AppSettings.Setting.TryGetSetting<double>("name"));
+            Assert.Equal(value, AppSettings.Setting.TryGetSetting<double>("name"));
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void TryGetSettingIncorrect()
         {
-            Assert.AreEqual(null, AppSettings.Setting.TryGetSetting("name"));
+            Assert.Null(AppSettings.Setting.TryGetSetting("name"));
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetAllActualSettingsCorrect()
         {
             IEnumerable<string> settings = new List<string>() { "First", "Second", "Third" };
@@ -77,7 +76,7 @@ namespace Toolkit.Tests
             }
 
             var actualSettings = AppSettings.Setting.AvailableSettings;
-            Assert.AreEqual(settings.Count(), actualSettings.Count());
+            Assert.Equal(settings.Count(), actualSettings.Count());
 
             foreach (var actualSetting in actualSettings)
             {
@@ -93,14 +92,14 @@ namespace Toolkit.Tests
 
                 if (!isFind)
                 {
-                    Assert.Fail();
+                    Assert.False(true);
                 }
             }
 
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void SerializeSettingsToJSONCorrect()
         {
             string StringKey = "string";
@@ -116,14 +115,14 @@ namespace Toolkit.Tests
 
             AppSettings.Setting.DeserializeFromJSON(settingsInJSON, ReplacementStatus.Rewrite);
 
-            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
-            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
-            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString()));
+            Assert.Equal(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.Equal(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.Equal(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString()));
 
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void SerializeSettingsToJSONToStreamCorrect()
         {
             string StringKey = "string";
@@ -139,14 +138,14 @@ namespace Toolkit.Tests
 
             AppSettings.Setting.DeserializeFromJSON(settingsInJSON, ReplacementStatus.Rewrite);
 
-            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
-            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
-            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString()));
+            Assert.Equal(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.Equal(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.Equal(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString()));
 
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void SerializeSettingsToXMLCorrect()
         {
             string StringKey = "string";
@@ -162,14 +161,14 @@ namespace Toolkit.Tests
 
             AppSettings.Setting.DeserializeFromXML(settingsInXML, ReplacementStatus.Rewrite);
 
-            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
-            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
-            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString(), CultureInfo.InvariantCulture));
+            Assert.Equal(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.Equal(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.Equal(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString(), CultureInfo.InvariantCulture));
 
             ClearAllSettings();
         }
 
-        [TestMethod]
+        [Fact]
         public void SerializeSettingsToXMLToStreamCorrect()
         {
             string StringKey = "string";
@@ -185,9 +184,9 @@ namespace Toolkit.Tests
 
             AppSettings.Setting.DeserializeFromXML(settingsInXML, ReplacementStatus.Rewrite);
 
-            Assert.AreEqual(StringKey, AppSettings.Setting[nameof(StringKey)]);
-            Assert.AreEqual(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
-            Assert.AreEqual(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString(), CultureInfo.InvariantCulture));
+            Assert.Equal(StringKey, AppSettings.Setting[nameof(StringKey)]);
+            Assert.Equal(IntKet, int.Parse(AppSettings.Setting[nameof(IntKet)].ToString()));
+            Assert.Equal(DoubleKey, double.Parse(AppSettings.Setting[nameof(DoubleKey)].ToString(), CultureInfo.InvariantCulture));
 
             ClearAllSettings();
         }
