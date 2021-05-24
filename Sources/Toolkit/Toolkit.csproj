@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -13,6 +13,10 @@
     <Version>1.6.3</Version>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageTags>csharp, check, contract, range, condition</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\..\Packages\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Toolkit\Toolkit.csproj" />
-    <ProjectReference Include="..\..\src\Toolkit.Components\Toolkit.Components.csproj" />
+    <ProjectReference Include="..\..\Sources\Toolkit.Components\Toolkit.Components.csproj" />
+    <ProjectReference Include="..\..\Sources\Toolkit\Toolkit.csproj" />
   </ItemGroup>
 
 </Project>

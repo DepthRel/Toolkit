@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C609A5C-78C6-4337-9AC6-7F510CA8E3A0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{1C609A5C-78C6-4337-9AC6-7F510CA8E3A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit", "src\Toolkit\Toolkit.csproj", "{BB033FD4-B6EC-4AA8-84D8-0BB388E5464B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit", "Sources\Toolkit\Toolkit.csproj", "{BB033FD4-B6EC-4AA8-84D8-0BB388E5464B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{884550EE-94C1-416C-A55B-5F3D3A814102}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{884550EE-94C1-416C-A55B-5F3D3A814102}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Tests", "tests\Toolkit.Tests\Toolkit.Tests.csproj", "{9EDBCA93-62CC-4D79-98F8-962D53227F5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Tests", "Tests\Toolkit.Tests\Toolkit.Tests.csproj", "{9EDBCA93-62CC-4D79-98F8-962D53227F5E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Components", "src\Toolkit.Components\Toolkit.Components.csproj", "{A19A4AF0-D38B-473A-A971-FF74224706C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Components", "Sources\Toolkit.Components\Toolkit.Components.csproj", "{A19A4AF0-D38B-473A-A971-FF74224706C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.UI.WPF", "src\Toolkit.UI.WPF\Toolkit.UI.WPF.csproj", "{241ACA5B-9D5E-43F4-8638-90AE16FC5400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.UI.WPF", "Sources\Toolkit.UI.WPF\Toolkit.UI.WPF.csproj", "{241ACA5B-9D5E-43F4-8638-90AE16FC5400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolkit.UI.WPF.Tests", "tests\Toolkit.UI.WPF.Tests\Toolkit.UI.WPF.Tests.csproj", "{FB815BD8-71A6-4161-9A7F-911B7699D44B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.UI.WPF.Tests", "Tests\Toolkit.UI.WPF.Tests\Toolkit.UI.WPF.Tests.csproj", "{FB815BD8-71A6-4161-9A7F-911B7699D44B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

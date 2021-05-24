@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Toolkit.UI.WPF\Toolkit.UI.WPF.csproj" />
+    <ProjectReference Include="..\..\Sources\Toolkit.UI.WPF\Toolkit.UI.WPF.csproj" />
   </ItemGroup>
 
 </Project>
