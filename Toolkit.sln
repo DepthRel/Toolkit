@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{1C60
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit", "Sources\Toolkit\Toolkit.csproj", "{BB033FD4-B6EC-4AA8-84D8-0BB388E5464B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests1", "Tests1", "{884550EE-94C1-416C-A55B-5F3D3A814102}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Tests", "Tests1\Toolkit.Tests\Toolkit.Tests.csproj", "{9EDBCA93-62CC-4D79-98F8-962D53227F5E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Components", "Sources\Toolkit.Components\Toolkit.Components.csproj", "{A19A4AF0-D38B-473A-A971-FF74224706C0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.UI.WPF", "Sources\Toolkit.UI.WPF\Toolkit.UI.WPF.csproj", "{241ACA5B-9D5E-43F4-8638-90AE16FC5400}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.UI.WPF.Tests", "Tests1\Toolkit.UI.WPF.Tests\Toolkit.UI.WPF.Tests.csproj", "{FB815BD8-71A6-4161-9A7F-911B7699D44B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{884550EE-94C1-416C-A55B-5F3D3A814102}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.Tests", "Tests\Toolkit.Tests\Toolkit.Tests.csproj", "{9EDBCA93-62CC-4D79-98F8-962D53227F5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit.UI.WPF.Tests", "Tests\Toolkit.UI.WPF.Tests\Toolkit.UI.WPF.Tests.csproj", "{FB815BD8-71A6-4161-9A7F-911B7699D44B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
