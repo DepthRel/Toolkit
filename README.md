@@ -1,7 +1,7 @@
 # Toolkit
 ### .NET Toolkit is a tool for simplify the development of classes, business logic, UI elements, etc.
 
-## [Toolkit](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit)
+## [Toolkit](https://github.com/DepthRel/Toolkit/tree/master/Sources/Toolkit)
 <ul>
   <li>
     
@@ -66,7 +66,7 @@
   </li>
 </ul>
   
-  ## [Toolkit.Components](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit.Components)
+  ## [Toolkit.Components](https://github.com/DepthRel/Toolkit/tree/master/Sources/Toolkit.Components)
   
 <ul>
   
@@ -79,7 +79,7 @@
   
   <li>
   
-  [IMessage](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.Components/Notifications/IMessage.cs) is an interface for solving the problem of calling a dialog from a ViewModel without interacting with the View layer.
+  [IMessage](https://github.com/DepthRel/Toolkit/blob/master/Sources/Toolkit.Components/Notifications/IMessage.cs) is an interface for solving the problem of calling a dialog from a ViewModel without interacting with the View layer.
   
   ```csharp
   // View layer
@@ -109,13 +109,13 @@
   </li>
 </ul>
 
-  ## [Toolkit.UI.WPF](https://github.com/DepthRel/Toolkit/tree/master/src/Toolkit.UI.WPF)
+  ## [Toolkit.UI.WPF](https://github.com/DepthRel/Toolkit/tree/master/Sources/Toolkit.UI.WPF)
   
 <ul>
   
   <li>
   
-  [PlaceholderTextBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/PlaceholderTextBox.xaml.cs), [NumberBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/NumberBox.xaml.cs), [CompactButton](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/CompactButton.xaml.cs), [FontIcon](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/FontIcon.xaml.cs)
+  [PlaceholderTextBox](https://github.com/DepthRel/Toolkit/blob/master/Sources/Toolkit.UI.WPF/Controls/PlaceholderTextBox.xaml.cs), [NumberBox](https://github.com/DepthRel/Toolkit/blob/master/Sources/Toolkit.UI.WPF/Controls/NumberBox.xaml.cs), [CompactButton](https://github.com/DepthRel/Toolkit/blob/master/Sources/Toolkit.UI.WPF/Controls/CompactButton.xaml.cs), [FontIcon](https://github.com/DepthRel/Toolkit/blob/master/Sources/Toolkit.UI.WPF/Controls/FontIcon.xaml.cs)
   
   ![Controls](https://i.ibb.co/whQZ5VP/image.png)
   
@@ -123,7 +123,7 @@
   
   <li>
   
-  [DialogBox](https://github.com/DepthRel/Toolkit/blob/master/src/Toolkit.UI.WPF/Controls/DialogBox.xaml.cs)
+  [DialogBox](https://github.com/DepthRel/Toolkit/blob/master/Sources/Toolkit.UI.WPF/Controls/DialogBox.xaml.cs)
   
   ![DialogBox](https://i.ibb.co/JdS6s5X/image.png)
   
