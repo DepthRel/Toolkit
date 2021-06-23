@@ -12,7 +12,7 @@ namespace Toolkit.Components.ViewModels
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         /// <summary>
-        /// Set property and notify <seealso cref="PropertyChanged"/>
+        /// Set property and notify <see cref="PropertyChanged"/>
         /// </summary>
         /// <typeparam name="T">Type of variable for setting new value</typeparam>
         /// <param name="storage">Reference to variable for setting new value</param>
@@ -33,6 +33,14 @@ namespace Toolkit.Components.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        /// <summary>
+        /// Notify <see cref="PropertyChanged"/> about all properties changing
+        /// </summary>
+        protected virtual void OnAllPropertyChanged()
+        {
+            OnPropertyChanged(string.Empty);
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
